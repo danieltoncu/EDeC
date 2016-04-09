@@ -1,0 +1,53 @@
+
+/*
+Paleta de culori folosita: http://www.colourlovers.com/palette/92095/Giant_Goldfish;
+*/
+body{
+    margin: 0px;
+    background-color: ;
+}
+header{
+    min-height: 85px;
+    max-height: 85px;
+    margin: 0;
+    padding: 0;
+    background-color: #69D2E7;
+    position: fixed;
+    top:0px;
+    width: 100%;
+}
+
+ul {
+    list-style-type: none;
+    overflow: hidden;
+    padding-right: 20px;
+}
+
+li {
+    float: right;
+   padding-right: 5px;
+}
+
+/*momentan First-Child e BBY dar va fi schimbat cu un Logo.png*/
+li:first-child {
+    float:left;
+}
+
+li a {
+    display: block;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    padding: 15px 30px;
+    text-decoration: none;
+}
+
+
+li a:hover:not(.active) {
+    background-color:#A7DBD8;
+}
+
+.active {
+    background-color: #F38630;
+}

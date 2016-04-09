@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {margin:0;background-color:#E0E4CC;}
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #69D2E7;
+}
+
+ul.topnav li {float: right;}
+
+ul.topnav li a {
+  display: inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 30px 30px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+ul.topnav li a:hover {background-color: #d5ff80;}
+
+ul.topnav li.icon {display: none;}
+
+@media screen and (max-width:680px) {
+  ul.topnav li:not(:first-child) {display: none;}
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width:680px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+body {
+  background: #eee;
+  font: 12px Lucida sans, Arial, Helvetica, sans-serif;
+  color: #333;
+  /*text-align: center;*/
+}
+
+a {
+  color: #2A679F;
+}
+/*========*/
+
+.form-wrapper {
+  background-color: #f6f6f6;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eae8e8));
+  background-image: -webkit-linear-gradient(top, #f6f6f6, #eae8e8);
+  background-image: -moz-linear-gradient(top, #f6f6f6, #eae8e8);
+  background-image: -ms-linear-gradient(top, #f6f6f6, #eae8e8);
+  background-image: -o-linear-gradient(top, #f6f6f6, #eae8e8);
+  background-image: linear-gradient(top, #f6f6f6, #eae8e8);
+  border-color: #dedede #bababa #aaa #bababa;
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+  -moz-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+  box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+  margin: 100px auto;
+  overflow: hidden;
+  padding: 8px;
+  width: 450px;
+}
+
+.form-wrapper #search {
+  border: 1px solid #CCC;
+  -webkit-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+  -moz-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+  box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #999;
+  float: left;
+  font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+  height: 20px;
+  padding: 10px;
+  width: 320px;
+}
+
+.form-wrapper #search:focus {
+  border-color: #aaa;
+  -webkit-box-shadow: 0 1px 1px #bbb inset;
+  -moz-box-shadow: 0 1px 1px #bbb inset;
+  box-shadow: 0 1px 1px #bbb inset;
+  outline: 0;
+}
+
+.form-wrapper #search:-moz-placeholder,
+.form-wrapper #search:-ms-input-placeholder,
+.form-wrapper #search::-webkit-input-placeholder {
+  color: #999;
+  font-weight: normal;
+}
+
+.form-wrapper #submit {
+  background-color: #0483a0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#0483a0));
+  background-image: -webkit-linear-gradient(top, #31b2c3, #0483a0);
+  background-image: -moz-linear-gradient(top, #31b2c3, #0483a0);
+  background-image: -ms-linear-gradient(top, #31b2c3, #0483a0);
+  background-image: -o-linear-gradient(top, #31b2c3, #0483a0);
+  background-image: linear-gradient(top, #31b2c3, #0483a0);
+  border: 1px solid #00748f;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+  color: #fafafa;
+  cursor: pointer;
+  height: 42px;
+  float: right;
+  font: 15px Arial, Helvetica;
+  padding: 0;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0, 0 ,0, .3);
+  width: 100px;
+}
+
+.form-wrapper #submit:hover,
+.form-wrapper #submit:focus {
+  background-color: #31b2c3;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#0483a0), to(#31b2c3));
+  background-image: -webkit-linear-gradient(top, #0483a0, #31b2c3);
+  background-image: -moz-linear-gradient(top, #0483a0, #31b2c3);
+  background-image: -ms-linear-gradient(top, #0483a0, #31b2c3);
+  background-image: -o-linear-gradient(top, #0483a0, #31b2c3);
+  background-image: linear-gradient(top, #0483a0, #31b2c3);
+}
+
+.form-wrapper #submit:active {
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+  outline: 0;
+}
+
+.form-wrapper #submit::-moz-focus-inner {
+  border: 0;
+}
+
+/*h2{
+    padding-left: 300px;
+    padding-top: 100px;
+    font-family: 'Biko';
+    font-size: 35px;
+    font-weight: normal;
+    line-height: 50px;
+    color: #938e86;
+}*/
+</style>
+</head>
+<body>
+
+<ul class="topnav">
+  <img src="ee.png" style="padding-left: 20px;padding-top: 6px;">
+  <li><a class="active" href="#logout"><img src='logout16.png' alt='logOut'>
+    Logout
+  </a></li>
+  <li><a href="#username"><img src='shape16.png' alt='shape'>
+    Username
+  </a></li>
+  <li><a href="#search"><img src='search16.png' alt='search'>
+    Search
+  </a></li>
+  <li><a href="#home"><img src='home16.png' alt='home'>
+    Home
+  </a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()"> = </a>
+  </li>
+</ul>
+
+<div style="padding-left:16px">
+  <form class="form-wrapper">
+    <input type="text" id="search" placeholder="Search for..." required>
+    <input type="submit" value="go" id="submit">
+</form>
+</div>
+
+<script>
+function myFunction() {
+    document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
+}
+</script>
+
+</body>
+</html>
