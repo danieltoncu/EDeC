@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> EDeC </title>
+<link rel="stylesheet" type="text/css" href="searchResultStyle.css">
+<style>
+
+</style>
+</head>
+<body>
+<!--Start Top Meneu Bar-->
+<ul class="topnav">
+  <a class="serif"><b>EDeC</b></a>
+  <li><a class="active" href="#logout"><img src='resource/logout16.png' alt='logOut'>
+    Logout
+  </a></li>
+  <li><a href="#username"><img src='resource/shape16.png' alt='shape'>
+    Username
+  </a></li>
+  <li><a href="#search"><img src='resource/search16.png' alt='search'>
+    Search
+  </a></li>
+  <li><a href="#home"><img src='resource/home16.png' alt='home'>
+    Home
+  </a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()"> = </a>
+  </li>
+</ul>
+<script>
+function myFunction() {
+    document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
+}
+</script>
+<!--END Top Menu Bar-->
+
+<!--Container Body-->
+<div id="container">
+<br/><br/>
+<h2>Find the product that suits your needs</h2>
+<!--Search Bar-->
+<div class="field" id="searchform">
+  <input type="text" id="searchterm" value="Item we searched for..." />
+  <button type="button" id="search">Find!</button>
+</div>
+<!--END Search Bar-->
+<br/><br/>
+<p align="left">Search result</p>
+<!-- <ul class="products">
+    <li style="border:1px solid;" class="product" align="left">
+        <a href="#">
+        <div style="width: 80% height:100px">
+            <img style="float: left;" class="product_image" src="resource/cola.jpg" width="100" height="100">
+            <h4>Product name</h4>
+            <p>product info</p>
+          </div>
+        </a>
+    </li>
+    <br/><br/>
+    <li style="border:1px solid;" class="product" align="left">
+        <a href="#">
+            <img style="float: left;" class="product_image" src="resource/pepsi.jpg" width="100" height="100">
+            <h4>Product name</h4>
+            <p>product info</p>
+        </a>
+    </li>
+</ul> -->
+<div class="products_container">
+<div class="postd">
+    <img src="resource/cola.jpg" width="100" height="100">
+    <p><span style="font-size: 3em;font-weight:bold">Coca Cola</span><br/>Coca-Cola is the most popular and biggest-selling soft drink in history, as well as one of the most recognizable brands in the world.<br/>Created in 1886 in Atlanta, Georgia, by Dr. John S. Pemberton, Coca-Cola was first offered as a fountain beverage at Jacob's Pharmacy by mixing Coca-Colasyrup with carbonated water.</p>
+</div>
+<br/>
+<div class="postd">
+    <img src="resource/cola.jpg" width="100" height="100">
+    <p><span style="font-size: 3em;font-weight:bold">Coca Cola</span><br/>Coca-Cola is the most popular and biggest-selling soft drink in history, as well as one of the most recognizable brands in the world.<br/>Created in 1886 in Atlanta, Georgia, by Dr. John S. Pemberton, Coca-Cola was first offered as a fountain beverage at Jacob's Pharmacy by mixing Coca-Colasyrup with carbonated water.</p>
+</div>
+<br/>
+<div class="postd">
+    <img src="resource/cola.jpg" width="100" height="100">
+    <p><span style="font-size: 3em;font-weight:bold">Coca Cola</span><br/>Coca-Cola is the most popular and biggest-selling soft drink in history, as well as one of the most recognizable brands in the world.<br/>Created in 1886 in Atlanta, Georgia, by Dr. John S. Pemberton, Coca-Cola was first offered as a fountain beverage at Jacob's Pharmacy by mixing Coca-Colasyrup with carbonated water.</p>
+</div>
+<br/>
+<div class="postd">
+    <img src="resource/cola.jpg" width="100" height="100">
+    <p><span style="font-size: 3em;font-weight:bold">Coca Cola</span><br/>Coca-Cola is the most popular and biggest-selling soft drink in history, as well as one of the most recognizable brands in the world.<br/>Created in 1886 in Atlanta, Georgia, by Dr. John S. Pemberton, Coca-Cola was first offered as a fountain beverage at Jacob's Pharmacy by mixing Coca-Colasyrup with carbonated water.</p>
+</div>
+<br/>
+</div><!--END PRODUCTS_CONTAINER-->
+
+</div><!--END Container-->
+</body>
+</html>
