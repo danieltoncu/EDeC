@@ -1,0 +1,1 @@
+EDeC (Ethical Decisions for Consumers) is a web application that provides assistance for consumers targeting the decision of acquisition for some services.
