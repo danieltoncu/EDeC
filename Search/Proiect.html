@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> EDeC </title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<style>
+
+</style>
+</head>
+<body>
+<!--Start Top Meneu Bar-->
+<ul class="topnav">
+  <a class="serif"><b>EDeC</b></a>
+  <li><a class="active" href="#logout"><img src='resource/logout16.png' alt='logOut'>
+    Logout
+  </a></li>
+  <li><a href="#username"><img src='resource/shape16.png' alt='shape'>
+    Username
+  </a></li>
+  <li><a href="#search"><img src='resource/search16.png' alt='search'>
+    Search
+  </a></li>
+  <li><a href="#home"><img src='resource/home16.png' alt='home'>
+    Home
+  </a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()"> = </a>
+  </li>
+</ul>
+<!--END Top Menu Bar-->
+
+<!--Container Body-->
+<div align="center" id="container">
+<br/><br/>
+<h2>Find the product that suits your needs</h2>
+<div class="field" id="searchform">
+  <input type="text" id="searchterm" placeholder="what are you searching for?" />
+  <button type="button" id="search">Find!</button>
+</div>
+<!--   <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> -->
+
+<br/><br/>
+<h2>Product Categories</h2>
+
+<div class="dropdown">
+    <button class="dropbtn"><b>Clothing</b></button>
+  <div class="dropdown-content">
+    <a href="#"><b>Man</b></a>
+    <a href="#"><b>Woman</b></a>
+    <a href="#"><b>Kid</b></a>
+  </div>   
+</div>
+
+<div class="dropdown">
+    <button class="dropbtn"><b>Beauty</b></button>
+  <div class="dropdown-content">
+    <a href="#"><b>Cosmetics</b></a>
+    <a href="#"><b>Personal care</b></a>
+    <a href="#"><b>Natural cosmetics</b></a>
+  </div>
+</div>
+
+<div class="dropdown">
+    <button class="dropbtn"><b>Food</b></button>
+  <div class="dropdown-content">
+    <a href="#"><b>Fast food</b></a>
+    <a href="#"><b>Vegetables</b></a>
+    <a href="#"><b>Fruits</b></a>
+    <a href="#"><b>Drinks</b></a>
+  </div>
+</div>
+
+<div  class="dropdown">
+    <button class="dropbtn"><b>Electronics</b></button>
+  <div class="dropdown-content">
+    <a href="#"><b>Mobile</b></a>
+    <a href="#"><b>Laptop</b></a>
+    <a href="#"><b>Games</b></a>
+    <a href="#"><b>TV-Audi-Video</b></a>
+  </div>
+</div>
+
+<div class="dropdown">
+    <button class="dropbtn"><b>Home & kitchen</b></button>
+  <div class="dropdown-content">
+    <a href="#"><b>Home decor</b></a>
+    <a href="#"><b>Garden decor</b></a>
+    <a href="#"><b>Pet supplies</b></a>
+  </div>
+</div>
+</div>
+
+<script>
+function myFunction() {
+    document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
+}
+</script>
+
+<!--END Container-->
+</body>
+</html>
