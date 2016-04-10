@@ -4,19 +4,19 @@ Paleta de culori folosita:
  http://www.colourlovers.com/palette/92095/Giant_Goldfish;
 */
 body{
-	margin:0;
-	/*background-color:#009933;*/
-	background: #eee;
-  	font: 12px Lucida sans, Arial, Helvetica, sans-serif;
-  	color: #333;
+  margin:0;
+  /*background-color:#009933;*/
+  background: #eee;
+    font: 12px Lucida sans, Arial, Helvetica, sans-serif;
+    color: #333;
   /*text-align: center;*/
 }
 ul.topnav {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #3e8e41;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #3e8e41;
 }
 
 ul.topnav li {float: right;}
@@ -61,8 +61,10 @@ ul.topnav li.icon {display: none;}
 }
 
 #container{
-	position: static;
-	
+  position: static;
+  margin: auto;
+    width: 95%;
+    text-align: center
 }
 .field {
   display:flex;
