@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <title>Star rating widget example</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+<ul class="topnav">
+  <!-- <img src="buycott.png" style="padding-left: 20px;padding-top: 6px;"> -->
+   <span id="EDeC">EDeC</span>
+  <li><a class="active" href="#logout"><img src='resource/logout16.png' alt='logOut'>
+    Logout
+  </a></li>
+  <li><a href="#username"><img src='resource/shape16.png' alt='shape'>
+    Username
+  </a></li>
+  <li><a href="#search"><img src='resource/search16.png' alt='search'>
+    Search
+  </a></li>
+  <li><a href="#home"><img src='resource/home16.png' alt='home'>
+    Home
+  </a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()"> = </a>
+  </li>
+</ul>
+
+<div style="padding-left:250px;">
+  <h2>Product name</h2>
+  <p>Owned by</p>
+</div>
+
+
+<div>
+  <div style="padding-left:200px; float:left;"> <img src="resource/1.jpg" style="width: auto; height: auto;max-width: 400px;max-height: 400px">
+
+<form>
+<input class="MyButton" type="button" value="Add to favorites" onclick="window.location.href='http://www.hyperlinkcode.com/button-links.php'" />
+</form>
+
+
+
+  </div>
+
+  <div style="padding-left:200px;float:left;"> 
+
+  <p>
+      Rating:
+      <span class="starRating">
+        <input id="rating5" type="radio" name="rating" value="5">
+        <label for="rating5">5</label>
+        <input id="rating4" type="radio" name="rating" value="4">
+        <label for="rating4">4</label>
+        <input id="rating3" type="radio" name="rating" value="3" checked>
+        <label for="rating3">3</label>
+        <input id="rating2" type="radio" name="rating" value="2">
+        <label for="rating2">2</label>
+        <input id="rating1" type="radio" name="rating" value="1">
+        <label for="rating1">1</label>
+      </span>
+    </p>
+    <p>number of votes</p>
+    <p>Price</p>
+
+      <p>Description</p>
+  <li>leather-and-synthetic</li>
+  <li>Imported</li>
+  <li>Perforated toe front detail</li>
+  <li>Nike's revolutionary Air-Sole technology is featured in the heel</li>
+  <li>Nike Air unit in midsole</li>
+  </div>
+</div>
+
+<div align="left">
+  <span style="display:block; height: 400px;"></span>
+  <p></p>
+  <p><h2>You may be interested<br></h2></p>
+  <div style="padding-left:100px; float:left;"> <img src="resource/2.jpg" style="width: auto; height: auto;max-width: 200px;max-height: 200px">
+  <p>Product name</p>
+  </div>
+  <div style="padding-left:100px; float:left;"><img src="resource/2.jpg" style="width: auto; height: auto;max-width: 200px;max-height: 200px">
+<p>Product name</p>
+  </div>
+  <div style="padding-left:100px; float:left;"><img src="resource/2.jpg" style="width: auto; height: auto;max-width: 200px;max-height: 200px">
+<p>Product name</p>
+  </div>
+  <div style="padding-left:100px; float:left;"><img src="resource/2.jpg" style="width: auto; height: auto;max-width: 200px;max-height: 200px">
+<p>Product name</p>
+  </div>
+</div>
+
+
+<div align="left">
+<span style="display:block; height: 200px;"></span>
+<p></p>
+<p><h2>Top users reviews<br></h2></p>
+
+  <div style="padding-left:50px;width:60%;"> Bery nice
+  <p>By user1</p>
+  <p>asdasadsadsaas dasd das da d ad asd as dasd a d ad s sd ad sd a dsa d ad sad sa dsa d sd ad  ad asd sa d ad as dsad sd ad asd sad sa da ds ad ad ad a ds a ds ad sd a d as d d a sdsad a sd s dd as d </p>
+  </div>
+
+  <div style="padding-left:50px;width:60%;"> Fits perfectly
+  <p>By user2</p>
+  <p>asdasadsadsaas dasd das da d ad asd as dasd a d ad s sd ad sd a dsa d ad sad sa dsa d sd ad  ad asd sa d ad as dsad sd ad asd sad sa da ds ad ad ad a ds a ds ad sd a d as d d a sdsad a sd s dd as d </p>
+</div>
+
+  <div style="padding-left:50px;width:60%;"> Naaah
+  <p>By user3</p>
+  <p>asdasadsadsaas dasd das da d ad asd as dasd a d ad s sd ad sd a dsa d ad sad sa dsa d sd ad  ad asd sa d ad as dsad sd ad asd sad sa da ds ad ad ad a ds a ds ad sd a d as d d a sdsad a sd s dd as d </p>
+</div>
+
+</div>
+
+<script>
+function myFunction() {
+    document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
+}
+</script>
+
+</body>
+</html>
