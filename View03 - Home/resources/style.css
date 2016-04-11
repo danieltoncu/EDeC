@@ -1,7 +1,7 @@
 #short-description {
 	width: 100%;
 	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 	font-family: Georgia;
 	font-size: 22px;
 	text-align: center;
@@ -17,20 +17,32 @@ body {
 
 #main {
 	width: 100%;
+	margin-bottom: 25px;
+}
+
+#main-left-td {
+	width: 260px;
+	vertical-align: top;
 }
 
 #main-left {
 	width: 250px;
 	float: left;
 	margin-left: 5px;
-	margin-bottom: 25px;
+}
+
+#main-right-td {
+	width: 260px;
 }
 
 #main-right {
 	width: 250px;
 	float: right;
 	margin-right: 5px;
-	margin-bottom: 25px;
+}
+
+#main-center {
+	min-width: 200px;
 }
 
 #users-similar-preferences {
