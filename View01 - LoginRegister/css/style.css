@@ -176,3 +176,21 @@ textarea {
   margin-top: -20px;
   text-align: right;
 }
+
+#short-description {
+  width: 100%;
+  margin-top: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+
+#short-description img {
+  width: 150px;
+  height: auto;
+}
+
+#short-description span {
+  font-family: Georgia;
+  font-size: 24px;
+}
