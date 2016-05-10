@@ -67,8 +67,8 @@ create table product (
 	category_id number(10),
 	product_brand varchar2(50) not null,
 	product_owner varchar2(50) not null,
-	product_description varchar2(10000),
-	PRIMARY KEY(p_product_id),
+	product_description varchar2(1000),
+	PRIMARY KEY(product_id),
 	Constraint product_name_constraint unique(product_name)
 
 )
@@ -79,7 +79,7 @@ create table ingredients(
 	ingredient_name varchar2(50),
 	ingredient_concern_level number(1) not null,
 	product_id number(10) ,
-	PRIMARY KEY(product_ingredient_id),
+	PRIMARY KEY(ingredient_id),
 	Constraint ingredient_name_constraint unique(ingredient_name)
 
 )
@@ -162,8 +162,6 @@ create index search_product_name on product(upper(product_name));
 create index search_product_brand on product(upper(product_brand));
 	/
 create index search_product_ingredient_name on ingredients(upper(product_ingredient_name));
-	/
-create index search_username on users(username);
 	/
 create index search_username_upper on users(upper(username));
 	/
