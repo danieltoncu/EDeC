@@ -16,6 +16,9 @@ function delete_dislike_ingredient(p_user_id users.user_id%type, p_ingredient_na
 END manage_users_dislikes;
 
 
+
+
+
 CREATE OR REPLACE PACKAGE BODY manage_users_dislikes IS
 
 function dislike_product(p_user_id users.user_id%type, p_product_name product.product_name%type) 
@@ -55,8 +58,8 @@ v_number number(10):=0;
 
 BEGIN
 
---select count(*) into v_validate from product
---where upper(p_product_brand)=upper( product_brand);
+select count(*) into v_validate from product
+where upper(product_brand)=upper( p_product_brand);
 
 select number_dislikes into v_number from user_dislikes
 where user_id=p_user_id;
@@ -85,8 +88,8 @@ v_number number(10):=0;
 
 BEGIN
 
---select count(*) into v_validate from ingredients
---where upper( p_ingredient_name)=upper( ingredient_name);
+select count(*) into v_validate from ingredients
+where upper(ingredient_name)=upper( p_ingredient_name);
 
 select number_dislikes into v_number from user_dislikes
 where user_id=p_user_id;
@@ -113,11 +116,11 @@ v_message varchar2(32000):='';
 v_number number(10):=0;
 BEGIN
 
---select count(*) into v_validate from user_dislikes
---where user_id=p_user_id and upper(product_name)=upper(p_product_name);
+select count(*) into v_validate from user_dislikes
+where user_id=p_user_id and upper(product_name)=upper(p_product_name);
 	
 if(v_validate=1) then
-	--delete from user_dislikes where upper(product_name)=upper(p_product_name) and user_id=p_user_id;
+	delete from user_dislikes where upper(product_name)=upper(p_product_name) and user_id=p_user_id;
 	v_message:='succefully deleted';
 else
 	v_message:='not such a product';
@@ -159,7 +162,7 @@ select count(*) into v_validate from user_dislikes
 where user_id=p_user_id and upper(product_ingredient_name)=upper(p_ingredient_name);
 	
 if(v_validate=1) then
-	--delete from user_dislikes where upper(product_ingredient_name)=upper(p_product_name) and user_id=p_user_id;
+	delete from user_dislikes where upper(product_ingredient_name)=upper(p_ingredient_name) and user_id=p_user_id;
 	v_message:='succefully deleted';
 else
 	v_message:='not such a product';

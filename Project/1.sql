@@ -127,7 +127,7 @@ create table user_likes(
 /
 create table user_dislikes(
 	user_id number(10),
-	product_id number(10),
+	product_name number(10),
 	product_brand varchar2(50),
 	product_ingredient_name number(10),
 	number_dislikes number(10)
@@ -161,7 +161,7 @@ create index search_product_name on product(upper(product_name));
 	/
 create index search_product_brand on product(upper(product_brand));
 	/
-create index search_product_ingredient_name on ingredients(upper(product_ingredient_name));
+create index search_product_ingredient_name on ingredients(upper(ingredient_name));
 	/
 create index search_username_upper on users(upper(username));
 	/
