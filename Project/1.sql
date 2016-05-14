@@ -1,37 +1,40 @@
 
-alter table product drop Constraint ref_category_id
+alter table product drop Constraint ref_category_id;
 /
-alter table ingredients drop Constraint ref_product_id_ingredients
+alter table product_caracteristic drop Constraint ref_caracteristic; 
 /
-alter table certifications drop Constraint ref_product_id_certifications
+alter table product_caracteristic drop Constraint ref_product; 
+ /
+alter table overall_score drop Constraint ref_product_id_overall_score;
 /
-alter table overall_score drop Constraint ref_product_id_overall_score
+alter table health drop Constraint ref_product_id_health;
 /
-alter table health drop Constraint ref_product_id_health
+alter table environment drop Constraint ref_product_id_environment;
 /
-alter table environment drop Constraint ref_product_id_environment
+alter table society drop Constraint ref_product_id_society;
 /
-alter table society drop Constraint ref_product_id_society
+alter table user_likes drop Constraint ref_user_likes;
 /
+alter table user_dislikes drop Constraint ref_user_dislikes;
+/
+
 drop index search_product_name;
 /
 drop index search_product_brand;
 /
-drop index search_product_ingredient_name;
+drop index search_caracteristic_name;
 /
 drop index search_username;
 /
-drop index search_username_upper;
+drop table product_caracteristic;
 /
 drop table users;
 /
-drop table product_category;
+drop table category;
 /
 drop table product;
 /
-drop table ingredients;
-/
-drop table certifications;
+drop table caracteristics;
 /
 drop table overall_score;
 /
@@ -43,6 +46,9 @@ drop table society;
 /
 drop table user_likes;
 /
+drop table user_dislikes;
+/
+
 create table users(
 	user_id number(10),
 	username varchar2(50),
@@ -53,7 +59,7 @@ create table users(
 
 )
 /
-create table product_category(
+create table category(
 	category_id number(10),
 	category_name varchar2(50),
 	PRIMARY KEY(category_id),
@@ -66,7 +72,6 @@ create table product (
 	product_name varchar2(50),
 	category_id number(10),
 	product_brand varchar2(50) not null,
-	product_owner varchar2(50) not null,
 	product_description varchar2(1000),
 	PRIMARY KEY(product_id),
 	Constraint product_name_constraint unique(product_name)
@@ -74,76 +79,68 @@ create table product (
 )
 
 /
-create table ingredients(
-	ingredient_id number(10),
-	ingredient_name varchar2(50),
-	ingredient_concern_level number(1) not null,
-	product_id number(10) ,
-	PRIMARY KEY(ingredient_id),
-	Constraint ingredient_name_constraint unique(ingredient_name)
+create table caracteristics(
+	caracteristic_id number(10),
+	caracteristic_name varchar2(50),
+	caracteristic_concern_level number(1) not null,
+	PRIMARY KEY(caracteristic_id),
+	Constraint ingredient_name_constraint unique(caracteristic_name)
 
 )
 /
-create table certifications(
-	certifications_id number(10),
-	certifications_name varchar2(50),
+create table product_caracteristic(
 	product_id number(10),
-	PRIMARY KEY(certifications_id)
-
+	caracteristic_id number(10)
 )
 /
-
 create table overall_score(
 	product_id number(10),
-	product_overall_score number(3,1) not null
-
-)
+	overall_score number(3,1) not null,
+	overall_score_text varchar2(50)
+)	
 /
 create table health(
 	product_id number(10),
-	product_score number(3,1) not null
+	health_score number(3,1) not null,
+	health_score_text varchar2(50)
 
 )
 /
 create table environment(
 	product_id number(10),
-	product_score number(3,1) not null
+	environment_score number(3,1) not null,
+	environment_score_text varchar2(50)
 )
 /
 create table society(
 	product_id number(10),
-	product_score number(3,1) not null
+	society_score number(3,1) not null,
+	society_score_text varchar2(50)
 )
 /
 
 create table user_likes(
 	user_id number(10),
-	product_name number(10),
-	product_brand varchar2(50),
-	product_ingredient_name number(10),
-	number_likes number(10)
-
+	product_id number(10)
 )
 /
 create table user_dislikes(
 	user_id number(10),
-	product_name number(10),
-	product_brand varchar2(50),
-	product_ingredient_name number(10),
-	number_dislikes number(10)
-)
+	product_id number(10)
+	)
 
 /
 
 alter table product add Constraint ref_category_id foreign key(category_id)
-  references product_category(category_id)
+  references category(category_id)
 /
-alter table ingredients add Constraint ref_product_id_ingredients foreign key(product_id)
+alter table product_caracteristic add Constraint ref_caracteristic foreign key(caracteristic_id)
+  references caracteristics(caracteristic_id)
+/
+ alter table product_caracteristic add Constraint ref_product foreign key(product_id)
   references product(product_id)
 /
-alter table certifications add Constraint ref_product_id_certifications foreign key(product_id)
-  references product(product_id)
-/
+
 alter table overall_score add Constraint ref_product_id_overall_score foreign key(product_id)
   references product(product_id)
 /
@@ -156,12 +153,18 @@ alter table environment add Constraint ref_product_id_environment foreign key(pr
 alter table society add Constraint ref_product_id_society foreign key(product_id)
   references product(product_id)
 /
+alter table user_likes add Constraint ref_user_likes foreign key(user_id)
+  references users(user_id)
+/
+alter table user_dislikes add Constraint ref_user_dislikes foreign key(user_id)
+  references users(user_id)
+/
 
 create index search_product_name on product(upper(product_name));
 	/
 create index search_product_brand on product(upper(product_brand));
 	/
-create index search_product_ingredient_name on ingredients(upper(ingredient_name));
+create index search_caracteristic_name on caracteristics(upper(caracteristic_name));
 	/
-create index search_username_upper on users(upper(username));
+create index search_username on users(upper(username));
 	/

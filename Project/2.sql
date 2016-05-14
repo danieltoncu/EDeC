@@ -1,19 +1,14 @@
 CREATE OR REPLACE PACKAGE manage_users IS
 
-Function add_user (p_username users.username%type,p_password users.password%type,p_check_password users.password%type,p_email users.email%type)
-return varchar2;
+procedure add_user (v_username users.username%type,v_password users.password%type,v_check_password users.password%type,v_email users.email%type,v_message out varchar2);
 
-Function delete_user(p_username users.username%type,p_password users.password%type)
-return varchar2 ;
+procedure delete_user(v_username users.username%type,v_password users.password%type,v_message out varchar2);
 
-Function log_in(p_username users.username%type,p_password users.password%type )
-return varchar2;
+procedure log_in(v_username users.username%type,v_password users.password%type,v_message out varchar2 );
 
-Function change_passwd(p_username users.username%type,p_old_password users.password%type,p_new_password users.password%type)
-return varchar2;
+procedure change_passwd(v_username users.username%type,v_old_password users.password%type,v_new_password users.password%type,v_message out varchar2);
 
-Function change_email(p_username users.username%type,p_email users.email%type)
-return varchar2;
+procedure change_email(v_username users.username%type,v_old_email users.email%type,v_new_email users.email%type,v_message out varchar2);
 
     absent_username exception;
     absent_password exception;
@@ -38,10 +33,8 @@ END manage_users;
 
 CREATE OR REPLACE PACKAGE BODY manage_users IS
 
-    Function add_user (p_username users.username%type,p_password users.password%type,p_check_password users.password%type,p_email users.email%type) 
-    return varchar2 IS
+    procedure add_user (v_username users.username%type,v_password users.password%type,v_check_password users.password%type,v_email users.email%type,v_message out varchar2)  IS
 
-    p_message varchar2(32000):='';
     
     v_num integer:=0;
     v_id number(10);
@@ -52,12 +45,12 @@ CREATE OR REPLACE PACKAGE BODY manage_users IS
     
 
     select count(*) into v_num from users
-    where upper(username)=upper(p_username);
+    where username=v_username;
 
     select count(*) into v_ids from users;
 
 
-    p_message:='Registration succeded';
+    v_message:='Registration succeded';
 
     if(v_ids=0) then
         v_id:=1;
@@ -69,26 +62,25 @@ CREATE OR REPLACE PACKAGE BODY manage_users IS
         v_id:=v_id+1;
     end if;
 
-    insert into users values(v_id,p_username,p_password,p_email);
 
 
-    if(p_username is null) then
+    if(v_username is null) then
         raise absent_username;
     end if;
 
-    if(p_password is null) then
+    if(v_password is null) then
         raise absent_password;
     end if;
 
-    if(p_check_password is null) then
+    if(v_check_password is null) then
         raise absent_password;
     end if;
 
-    if(p_username!=p_check_password) then
+    if(v_password!=v_check_password) then
         raise passwords_not_equal;
     end if;
 
-    if(p_email is null) then
+    if(v_email is null) then
         raise absent_email;
     end if;
 
@@ -96,9 +88,10 @@ CREATE OR REPLACE PACKAGE BODY manage_users IS
         raise username_already_in_use;
     end if;
 
+    insert into users values(v_id,v_username,v_password,v_email);
 
 
-    return p_message;
+
 
     exception 
         when absent_username then
@@ -115,205 +108,22 @@ CREATE OR REPLACE PACKAGE BODY manage_users IS
     END add_user;
     
 
-    Function delete_user(p_username users.username%type,p_password users.password%type) 
-    return varchar2 IS
-
-    p_message varchar2(32000):='';
-
-    BEGIN
-
-    delete from users where username=p_username and password=p_password;
-
-    p_message:='User was deleted succesfully';
-
-    return p_message;
-
-    exception 
-        when user_dosent_exists then
-            raise_application_error(-20006,'User doesn t exists');
-        when someting_wrong then
-            raise_application_error(-20007,'Someting went wrong');
-
-    END delete_user;
-
-
-    Function log_in(p_username users.username%type,p_password users.password%type ) 
-    return varchar2 is
+    procedure delete_user(v_username users.username%type,v_password users.password%type,v_message out varchar2) IS
 
     v_validate integer:=0;
-
-    p_message varchar2(32000):='';
 
     BEGIN
 
     select count(*) into v_validate from users
-    where username=p_username and password=p_password;
+    where username=v_username;
 
     if(v_validate=1) then
-        p_message:='succesfully logged';
+        delete from users where username=v_username and password=v_password;
+        v_message:='User was deleted succesfully';
     else
-        p_message:='Log in failed';
+        v_message:='user dosent exitst';
     end if;
 
-    return p_message;
-    END log_in;
-
-
-    Function change_passwd(p_username users.username%type,p_old_password users.password%type,p_new_password users.password%type)
-    return varchar2 IS
-
-    p_message varchar2(32000):='';
-    v_validate integer:=0;
-
-
-
-    BEGIN
-
-    --select count(*) into v_validate from user 
-    --where username=p_username and password=p_old_password;
-
-    if(p_new_password is not null and v_validate=1) then
-
-        --update user 
-        --set password=p_new_password
-        --where username=p_username;
-        p_message:='password updated';
-
-    else
-        p_message:='password not changed';
-
-    end if;
-
-    return p_message;
-
-    END change_passwd;
-
-    
-
-
-    Function change_email(p_username users.username%type,p_email users.email%type) 
-    return varchar2 IS
-
-    p_message varchar2(32000):='';
-    v_validate integer:=0;
-
-
-
-    BEGIN
-
-    --select count(*) into v_validate from user 
-    --where username=p_username;
-
-    if(p_email is not null and v_validate=1) then
-
-        --update user 
-        --set email=p_email
-        --where username=p_username;
-        p_message:='email updated';
-
-    else
-        p_message:='email not changed';
-
-    end if;
-
-    return p_message;
-    end change_email;
-
-
-END manage_users;
-
-
-CREATE OR REPLACE PACKAGE BODY manage_users IS
-
-    Function add_user (p_username users.username%type,p_password users.password%type,p_check_password users.password%type,p_email users.email%type) 
-    return varchar2 IS
-
-    p_message varchar2(32000):='';
-    
-    v_num integer:=0;
-    v_id number(10);
-    v_ids integer:=0;
-
-
-    BEGIN
-    
-
-    select count(*) into v_num from users
-    where upper(username)=upper(p_username);
-
-    select count(*) into v_ids from users;
-
-
-    p_message:='Registration succeded';
-
-    if(v_ids=0) then
-        v_id:=1;
-    else
-        select user_id into v_id from users
-        where rownum=1  
-        order by user_id desc;
-
-        v_id:=v_id+1;
-    end if;
-
-    insert into users values(v_id,p_username,p_password,p_email);
-
-
-    if(p_username is null) then
-        raise absent_username;
-    end if;
-
-    if(p_password is null) then
-        raise absent_password;
-    end if;
-
-    if(p_check_password is null) then
-        raise absent_password;
-    end if;
-
-    if(p_username!=p_check_password) then
-        raise passwords_not_equal;
-    end if;
-
-    if(p_email is null) then
-        raise absent_email;
-    end if;
-
-    if(v_num!=0) then
-        raise username_already_in_use;
-    end if;
-
-
-
-    return p_message;
-
-    exception 
-        when absent_username then
-            raise_application_error (-20001,'Write your username');
-        when absent_password then
-            raise_application_error(-20002,'Write the password');
-        when absent_email then
-            raise_application_error(-20003,'Write your email addres');
-        when passwords_not_equal then
-            raise_application_error(-20004,'passwords are not the same');
-        when username_already_in_use then
-            raise_application_error(-20005,'username username_already_in_use');
-
-    END add_user;
-    
-
-    Function delete_user(p_username users.username%type,p_password users.password%type) 
-    return varchar2 IS
-
-    p_message varchar2(32000):='';
-
-    BEGIN
-
-    delete from users where username=p_username and password=p_password;
-
-    p_message:='User was deleted succesfully';
-
-    return p_message;
 
     exception 
         when user_dosent_exists  then
@@ -324,32 +134,27 @@ CREATE OR REPLACE PACKAGE BODY manage_users IS
     END delete_user;
 
 
-    Function log_in(p_username users.username%type,p_password users.password%type ) 
-    return varchar2 is
 
+    procedure log_in(v_username users.username%type,v_password users.password%type,v_message out varchar2) IS
     v_validate integer:=0;
 
-    p_message varchar2(32000):='';
 
     BEGIN
 
     select count(*) into v_validate from users
-    where username=p_username and password=p_password;
+    where username=v_username and password=v_password;
 
     if(v_validate=1) then
-        p_message:='succesfully logged';
+        v_message:='succesfully logged';
     else
-        p_message:='Log in failed';
+        v_message:='Log in failed';
     end if;
 
-    return p_message;
     END log_in;
 
 
-    Function change_passwd(p_username users.username%type,p_old_password users.password%type,p_new_password users.password%type)
-    return varchar2 IS
 
-    p_message varchar2(32000):='';
+    procedure change_passwd(v_username users.username%type,v_old_password users.password%type,v_new_password users.password%type,v_message out varchar2) IS
     v_validate integer:=0;
 
 
@@ -357,31 +162,27 @@ CREATE OR REPLACE PACKAGE BODY manage_users IS
     BEGIN
 
     select count(*) into v_validate from users 
-    where username=p_username and password=p_old_password;
+    where username=v_username and password=v_old_password;
 
-    if(p_new_password is not null and v_validate=1) then
+    if(v_new_password is not null and v_validate=1) then
 
         update users
-        set password=p_new_password
-        where username=p_username;
-        p_message:='password updated';
+        set password=v_new_password
+        where username=v_username;
+        v_message:='password updated';
 
     else
-        p_message:='password not changed';
+        v_message:='password not changed';
 
     end if;
 
-    return p_message;
 
     END change_passwd;
 
     
 
 
-    Function change_email(p_username users.username%type,p_email users.email%type) 
-    return varchar2 IS
-
-    p_message varchar2(32000):='';
+    procedure change_email(v_username users.username%type,v_old_email users.email%type,v_new_email users.email%type,v_message out varchar2) IS
     v_validate integer:=0;
 
 
@@ -389,21 +190,20 @@ CREATE OR REPLACE PACKAGE BODY manage_users IS
     BEGIN
 
     select count(*) into v_validate from users 
-    where username=p_username;
+    where username=v_username and email=v_old_email;
 
-    if(p_email is not null and v_validate=1) then
+    if(v_new_email is not null and v_validate=1) then
 
         update users 
-        set email=p_email
-        where username=p_username;
-        p_message:='email updated';
+        set email=v_new_email
+        where username=v_username;
+        v_message:='email updated';
 
     else
-        p_message:='email not changed';
+        v_message:='email not changed';
 
     end if;
 
-    return p_message;
     end change_email;
 
 
