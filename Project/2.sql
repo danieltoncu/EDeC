@@ -88,7 +88,8 @@ CREATE OR REPLACE PACKAGE BODY manage_users IS
         raise username_already_in_use;
     end if;
 
-    insert into users values(v_id,v_username,v_password,v_email);
+    insert into users values(v_id,v_email,v_password,v_username);
+    insert into users_role values(v_id,'ROLE_USER',v_id);
 
 
 
@@ -111,13 +112,20 @@ CREATE OR REPLACE PACKAGE BODY manage_users IS
     procedure delete_user(v_username users.username%type,v_password users.password%type,v_message out varchar2) IS
 
     v_validate integer:=0;
+    v_id number(10):=0;
 
     BEGIN
 
     select count(*) into v_validate from users
     where username=v_username;
 
+    select user_id into v_id from users
+    where username=v_username;
+
     if(v_validate=1) then
+        delete from users_role where user_id=v_id;
+        delete from user_likes where user_id=v_id;
+        delete from user_dislikes where user_id=v_id;
         delete from users where username=v_username and password=v_password;
         v_message:='User was deleted succesfully';
     else
@@ -184,7 +192,6 @@ CREATE OR REPLACE PACKAGE BODY manage_users IS
 
     procedure change_email(v_username users.username%type,v_old_email users.email%type,v_new_email users.email%type,v_message out varchar2) IS
     v_validate integer:=0;
-
 
 
     BEGIN

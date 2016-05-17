@@ -33,13 +33,10 @@ where product_name=v_product_name;
 
 select count(*) into v_ids from product;
 
-if(v_num!=0) then
-	v_message:='product already exists';
 
-end if;
 
 if(v_ids=0 and v_num=0 ) then
-	v_id:=0;
+	v_id:=1;
 elsif(v_ids>0 and v_num=0) then
 	select product_id into v_id from product
 	where rownum=1
@@ -48,8 +45,13 @@ elsif(v_ids>0 and v_num=0) then
 	v_id:=v_id+1;
 end if;
 
-	insert into product values(v_id,v_product_name,v_category_id,v_product_brand,v_description);
-	v_message:='product inserted';
+if(v_num!=0) then
+    v_message:='product already exists';
+else
+    insert into product values(v_id,v_product_brand,v_description,v_product_name,v_category_id);
+    v_message:='product inserted';
+end if;
+
 
 end add_product;
 
@@ -57,19 +59,30 @@ end add_product;
 
 procedure delete_product(v_product_name product.product_name%type,v_message out varchar2) IS
     v_validate integer:=0;
+    v_id number(10):=0;
 begin
 
 select count(*) into v_validate from product
 where upper(product_name)=upper(v_product_name);
 
+select product_id into v_id from product
+where upper(product_name)=upper(v_product_name);
+
     if(v_validate=1) then
-        delete from product where  upper(product_name)=upper(v_product_name);
+        delete from product_caracteristic where product_id=v_id;
+        delete from overall_score where product_id=v_id;
+        delete from health where product_id=v_id;
+        delete from environment where product_id=v_id;
+        delete from society where product_id=v_id;
+        delete from user_likes where product_id=v_id;
+        delete from user_dislikes where product_id=v_id;
+        delete from product where product_id=v_id;
         v_message:='product was deleted succesfully';
     else
         v_message:='product dosent exitst';
     end if;
 
-    return v_message;
+
 
 END delete_product;
 
@@ -107,14 +120,19 @@ end change_product_name;
 procedure change_product_category(v_product_name product.product_name%type,v_category_id_old product.category_id%type,v_category_id_new product.category_id%type,v_message out varchar2) IS
 
     v_validate integer:=0;
+    v_validate1 integer:=0;
 
 begin
 
 select count(*) into v_validate from product 
     where product_name=v_product_name and category_id=v_category_id_old;
 
+select count(*) into v_validate1 from category
+where category_id=v_category_id_new;
 
-    if(v_category_id_new is not null and v_validate=1) then
+
+
+    if(v_category_id_new is not null and v_validate=1 and v_validate1=1) then
 
         update product
         set category_id=v_category_id_new
@@ -126,7 +144,6 @@ select count(*) into v_validate from product
 
     end if;
 
-    return v_message;
 
 END change_product_category;
 
@@ -154,7 +171,6 @@ select count(*) into v_validate from product
 
     end if;
 
-return v_message;
 
 
 

@@ -15,6 +15,8 @@ alter table society drop Constraint ref_product_id_society;
 /
 alter table user_likes drop Constraint ref_user_likes;
 /
+alter table users_role drop Constraint ref_user_role;
+/
 alter table user_dislikes drop Constraint ref_user_dislikes;
 /
 
@@ -48,12 +50,14 @@ drop table user_likes;
 /
 drop table user_dislikes;
 /
+drop table users_role;
+/
 
 create table users(
 	user_id number(10),
-	username varchar2(50),
-	password varchar2(50) not null,
 	email varchar2(50) not null,
+	password varchar2(50) not null,			
+	username varchar2(50),
 	PRIMARY KEY(user_id),
 	Constraint username_constraint unique(username)
 
@@ -69,10 +73,10 @@ create table category(
 /
 create table product (
 	product_id number(10),
-	product_name varchar2(50),
-	category_id number(10),
 	product_brand varchar2(50) not null,
 	product_description varchar2(1000),
+	product_name varchar2(50),
+	category_id number(10),
 	PRIMARY KEY(product_id),
 	Constraint product_name_constraint unique(product_name)
 
@@ -81,56 +85,78 @@ create table product (
 /
 create table caracteristics(
 	caracteristic_id number(10),
+	caracteristic_concern_level number(1) not null,	
 	caracteristic_name varchar2(50),
-	caracteristic_concern_level number(1) not null,
 	PRIMARY KEY(caracteristic_id),
 	Constraint ingredient_name_constraint unique(caracteristic_name)
 
 )
 /
 create table product_caracteristic(
+	product_caracteristic_id number(10),
+	caracteristic_id number(10),
 	product_id number(10),
-	caracteristic_id number(10)
+	PRIMARY KEY(product_caracteristic_id)
 )
 /
 create table overall_score(
-	product_id number(10),
+	overall_score_id number(10),
 	overall_score number(3,1) not null,
-	overall_score_text varchar2(50)
+	overall_score_text varchar2(50),
+	product_id number(10),
+	PRIMARY KEY(overall_score_id)
 )	
 /
 create table health(
-	product_id number(10),
+	health_id number(10),
 	health_score number(3,1) not null,
-	health_score_text varchar2(50)
+	health_score_text varchar2(50),
+	product_id number(10),
+	PRIMARY KEY(health_id)
 
 )
 /
 create table environment(
-	product_id number(10),
+	environment_id number(10),
 	environment_score number(3,1) not null,
-	environment_score_text varchar2(50)
+	environment_score_text varchar2(50),
+	product_id number(10),
+	PRIMARY KEY(environment_id)
 )
 /
 create table society(
-	product_id number(10),
+	society_id number(10),
 	society_score number(3,1) not null,
-	society_score_text varchar2(50)
+	society_score_text varchar2(50),
+	product_id number(10),
+	PRIMARY KEY(society_id)
 )
 /
 
 create table user_likes(
+	user_likes_id number(10),
+	product_id number(10),
 	user_id number(10),
-	product_id number(10)
+	PRIMARY KEY(user_likes_id)
 )
 /
 create table user_dislikes(
+	user_dislikes_id number(10),
+	product_id number(10),	
 	user_id number(10),
-	product_id number(10)
+	PRIMARY KEY(user_dislikes_id)
 	)
-
 /
-
+create table users_role(
+	users_role_id number(10),
+	user_role varchar2(100),
+	user_id number(10),
+	PRIMARY KEY(users_role_id)
+)
+/
+alter table users_role add Constraint ref_user_role foreign key(user_id)
+references users(user_id)
+/
 alter table product add Constraint ref_category_id foreign key(category_id)
   references category(category_id)
 /
