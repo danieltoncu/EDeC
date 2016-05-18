@@ -20,14 +20,37 @@ alter table users_role drop Constraint ref_user_role;
 alter table user_dislikes drop Constraint ref_user_dislikes;
 /
 
-drop index search_product_name;
+drop index product_name_category_id;
 /
-drop index search_product_brand;
+drop index search_product_brand ;
+/
+drop index product_id_category_id ;
 /
 drop index search_caracteristic_name;
 /
-drop index search_username;
+drop index search_username_password ;
 /
+drop index search_username_email ;
+/
+drop index search_user_id_users_role ;
+/
+drop index search_user_id_user_likes ;
+/
+drop index search_user_id_user_dislikes ;
+/
+drop index product_id_user_id_dislikes ;
+/
+drop index product_id_user_id_likes ;
+/	
+drop index health_product_id_score ;
+/
+drop index environment_product_id_score ;
+/
+drop index society_product_id_score ;
+/
+drop index search_category_name;
+/
+
 drop table product_caracteristic;
 /
 drop table users;
@@ -186,11 +209,34 @@ alter table user_dislikes add Constraint ref_user_dislikes foreign key(user_id)
   references users(user_id)
 /
 
-create index search_product_name on product(upper(product_name));
-	/
+create index product_name_category_id on product(upper(product_name),category_id);
+/
 create index search_product_brand on product(upper(product_brand));
-	/
+/
+create index product_id_category_id on product(product_id,category_id);
+/
 create index search_caracteristic_name on caracteristics(upper(caracteristic_name));
-	/
-create index search_username on users(upper(username));
-	/
+/
+create index search_username_password on users(username,password);
+/
+create index search_username_email on users(username,email);
+/
+create index search_user_id_users_role on users_role(user_id);
+/
+create index search_user_id_user_likes on user_likes(user_id);
+/
+create index search_user_id_user_dislikes on user_dislikes(user_id);
+/
+create index product_id_user_id_dislikes on user_dislikes(product_id,user_id);
+/
+create index product_id_user_id_likes on user_likes(product_id,user_id);
+/	
+create index health_product_id_score on health(product_id,health_score);
+/
+create index environment_product_id_score on environment(product_id,environment_score);
+/
+create index society_product_id_score on society(product_id,society_score);
+/
+create index search_category_name on category(upper(category_name));
+/
+commit;
