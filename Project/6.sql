@@ -9,8 +9,8 @@ CREATE OR REPLACE PACKAGE manage_caracteristics IS
 	procedure add_caracteristic_to_product(v_caracteristic_id caracteristics.caracteristic_id%type,v_product_id product.product_id%type,v_message out varchar2);
 
 
-	caracteristic_name_already_in_use EXCEPTION;
-	PRAGMA EXCEPTION_INIT(caracteristic_name_already_in_use, -20016);
+	caracteristic_in_use EXCEPTION;
+	PRAGMA EXCEPTION_INIT(caracteristic_in_use, -20016);
 
 
 END manage_caracteristics;
@@ -50,12 +50,12 @@ CREATE OR REPLACE PACKAGE BODY manage_caracteristics IS
 		else
 	
 			v_message:='caracteristic name already in use';
-			raise caracteristic_name_already_in_use;
+			raise caracteristic_in_use;
 
 		end if;
 
 		EXCEPTION
-			when caracteristic_name_already_in_use then
+			when caracteristic_in_use then
 				raise_application_error(-20016,v_message);
 
 
@@ -85,12 +85,12 @@ CREATE OR REPLACE PACKAGE BODY manage_caracteristics IS
 		else
 	
 			v_message:='caracteristic name already in use';
-			raise caracteristic_name_already_in_use;
+			raise caracteristic_in_use;
 
 		end if;
 
 		EXCEPTION
-			when caracteristic_name_already_in_use then
+			when caracteristic_in_use then
 				raise_application_error(-20016,v_message);
 
 
@@ -120,12 +120,12 @@ CREATE OR REPLACE PACKAGE BODY manage_caracteristics IS
 		else
 				
 			v_message:='caracteristic name already in use';
-			raise caracteristic_name_already_in_use;
+			raise caracteristic_in_use;
 
 		end if;
 
 		EXCEPTION
-			when caracteristic_name_already_in_use then
+			when caracteristic_in_use then
 				raise_application_error(-20016,v_message);
 
 
@@ -167,12 +167,12 @@ CREATE OR REPLACE PACKAGE BODY manage_caracteristics IS
 		else
 	
 			v_message:='caracteristic name already in use';
-			raise caracteristic_name_already_in_use;
+			raise caracteristic_in_use;
 
 		end if;
 
 		EXCEPTION
-			when caracteristic_name_already_in_use then
+			when caracteristic_in_use then
 				raise_application_error(-20016,v_message);
 
 	end add_caracteristic_to_product;
