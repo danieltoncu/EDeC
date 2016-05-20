@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="edec-web:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="edec-web.war">
-      <element id="artifact" artifact-name="edec-web:war exploded" />
-    </root>
-  </artifact>
-</component>
