@@ -1,0 +1,33 @@
+<settings>                                                                      <proxies>
+  <proxy>
+    <active>true</active> 
+    <protocol>http</protocol> 
+    <host>localhost</host>
+    <nonProxyHosts>mycompany.com</nonProxyHosts> 
+  </proxy> 
+</proxies> 
+  <servers> 
+    <server> 
+      <id>maven.oracle.com </id> 
+      <username>olteanu.andrei@info.uaic.ro</username> 
+      <password>{ELHdqLNAci4Hdz7kyqcAWbt+Ma/UhWz51MnEJdx1WKo=}</password> 
+       <configuration>
+         <basicAuthScope>
+           <host>ANY </host>
+           <port>ANY </port>
+           <realm>OAM 11g </realm>
+         </basicAuthScope>
+	 <httpConfiguration>
+	   <all>
+             <params>
+               <property>
+		 <name>http.protocol.allow-circular-redirects </name>
+		 <value>%b,true </value>
+	       </property>
+	     </params>
+	   </all>
+	 </httpConfiguration>
+       </configuration>
+    </server> 
+  </servers> 
+</settings>
