@@ -1,0 +1,38 @@
+[
+    {
+        "id": 32768,
+        "name": "Honest Tea Just Green Tea",
+        "description": "Tea is the world's second most popular beverage, and who are we to argue with thousands of years' history? In this bottle, you'll taste just the pure flavor of organic green tea.",
+        "timestamp": "2016-05-28",
+        "category": "Drinks",
+        "pictureURL": "https://d21v8ds80btn1q.cloudfront.net/images/entities/large/474676.jpg",
+        "healthScore": 10,
+        "environmentScore": 8.5,
+        "societyScore": 8.2,
+        "overallScore": 8.9
+    },
+    {
+        "id": 32769,
+        "name": "Nestea Instant Iced Tea Mix",
+        "description": "Refreshing Tea Taste, Without the Calories.",
+        "timestamp": "2016-05-28",
+        "category": "Drinks",
+        "pictureURL": "https://d21v8ds80btn1q.cloudfront.net/images/entities/large/215793.png",
+        "healthScore": 10,
+        "environmentScore": 7.1,
+        "societyScore": 6.2,
+        "overallScore": 7.8
+    },
+    {
+        "id": 1,
+        "name": "Ajax with Aloe",
+        "description": "Power away grease with a formula that is mild on hands and will leave your dishes spotlessly clean.",
+        "timestamp": "2016-05-28",
+        "category": "Hand Dishwashing",
+        "pictureURL": "https://d21v8ds80btn1q.cloudfront.net/images/entities/large/205437.jpg",
+        "healthScore": 5,
+        "environmentScore": 6.4,
+        "societyScore": 6.2,
+        "overallScore": 5.8
+    }
+]
