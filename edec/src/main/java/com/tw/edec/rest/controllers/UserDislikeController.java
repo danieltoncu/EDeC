@@ -1,9 +1,7 @@
 package com.tw.edec.rest.controllers;
 
 import com.tw.edec.rest.models.Characteristic;
-import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.models.UserDislike;
-import com.tw.edec.rest.models.UserLike;
 import com.tw.edec.rest.services.UserDislikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

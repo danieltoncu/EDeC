@@ -1,7 +1,6 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -168,15 +167,18 @@
                     <div class="related-products-carousel">
 
                         <c:forEach items="${latestProducts}" var="latestProduct" varStatus="i">
+                            <c:set var="url" value="/products/${latestProduct.name}"/>
+                            <c:set var="productURL" value="${fn:replace(url,' ','%20')}"/>
+
                             <div class="single-product">
                                 <div class="product-f-image">
                                     <img src="${latestProduct.pictureURL}" alt="">
                                     <div class="product-hover">
-                                        <a href="<c:url value="/products/${latestProduct.name}"/>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="<c:url value="${productURL}"/>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
 
-                                <h2><a href="<c:url value="/products/${latestProduct.name}"/>">${latestProduct.name}</a></h2>
+                                <h2><a href="<c:url value="${productURL}"/>">${latestProduct.name}</a></h2>
                                 <div class="product-wid-rating">
                                     <p><b>${latestProduct.overallScore}</b></p>
                                 </div>
@@ -222,9 +224,12 @@
                     <h2 class="product-wid-title">Top Health</h2>
 
                     <c:forEach items="${topHealthProducts}" var="topHealthProduct" varStatus="i">
+                        <c:set var="url" value="/products/${topHealthProduct.name}"/>
+                        <c:set var="productURL" value="${fn:replace(url,' ','%20')}"/>
+
                         <div class="single-wid-product">
-                            <a href="<c:url value="/products/${topHealthProduct.name}"/>"><img src="${topHealthProduct.pictureURL}" alt="" class="product-thumb"></a>
-                            <h2><a href="<c:url value="/products/${topHealthProduct.name}"/>">${topHealthProduct.name}</a></h2>
+                            <a href="<c:url value="${productURL}"/>"><img src="${topHealthProduct.pictureURL}" alt="" class="product-thumb"></a>
+                            <h2><a href="<c:url value="${productURL}"/>">${topHealthProduct.name}</a></h2>
                             <div class="product-wid-rating">
                                 <p><b>H:${topHealthProduct.healthScore}</b></p>
                             </div>
@@ -241,7 +246,7 @@
                     No 'Access-Control-Allow-Origin' header is present on the requested resource.
                     Origin 'http://localhost:8282' is therefore not allowed access.--%>
 
-                    <%--<c:forEach items="${topSocietyProducts}" var="topSocietyProduct" varStatus="i">
+                    <c:forEach items="${topSocietyProducts}" var="topSocietyProduct" varStatus="i">
                         <div class="single-wid-product">
                             <a href="<c:url value="/products/${topSocietyProduct.name}"/>"><img src="${topSocietyProduct.pictureURL}" alt="" class="product-thumb"></a>
                             <h2><a href="<c:url value="/products/${topSocietyProduct.name}"/>">${topSocietyProduct.name}</a></h2>
@@ -249,7 +254,7 @@
                                 <p><b>S:${topSocietyProduct.societyScore}</b></p>
                             </div>
                         </div>
-                    </c:forEach>--%>
+                    </c:forEach>
 
                 </div>
             </div>
@@ -258,9 +263,12 @@
                     <h2 class="product-wid-title">Top Environment</h2>
 
                     <c:forEach items="${topEnvironmentProducts}" var="topEnvironmentProduct" varStatus="i">
+                        <c:set var="url" value="/products/${topEnvironmentProduct.name}"/>
+                        <c:set var="productURL" value="${fn:replace(url,' ','%20')}"/>
+
                         <div class="single-wid-product">
-                            <a href="<c:url value="/products/${topEnvironmentProduct.name}"/>"><img src="${topEnvironmentProduct.pictureURL}" alt="" class="product-thumb"></a>
-                            <h2><a href="<c:url value="/products/${topEnvironmentProduct.name}"/>">${topEnvironmentProduct.name}</a></h2>
+                            <a href="<c:url value="${productURL}"/>"><img src="${topEnvironmentProduct.pictureURL}" alt="" class="product-thumb"></a>
+                            <h2><a href="<c:url value="${productURL}"/>">${topEnvironmentProduct.name}</a></h2>
                             <div class="product-wid-rating">
                                 <p><b>E:${topEnvironmentProduct.environmentScore}</b></p>
                             </div>

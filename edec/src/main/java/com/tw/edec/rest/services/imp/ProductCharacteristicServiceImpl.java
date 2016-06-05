@@ -1,7 +1,6 @@
 package com.tw.edec.rest.services.imp;
 
 import com.tw.edec.rest.models.Characteristic;
-import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.models.ProductCharacteristic;
 import com.tw.edec.rest.services.ProductCharacteristicService;
 import com.tw.edec.rest.storage.CharacteristicDao;
@@ -48,7 +47,7 @@ public class ProductCharacteristicServiceImpl implements ProductCharacteristicSe
     @Override
     public void removeProductCharacteristic(String productName, String characteristicName) {
         productCharacteristicDao.removeProductCharacteristic(
-                productCharacteristicDao.getProductCharacteristic(productName.replace('_',' '),characteristicName.replace('_',' '))
+                productCharacteristicDao.getProductCharacteristic(productName,characteristicName)
                 );
     }
 

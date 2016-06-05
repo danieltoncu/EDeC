@@ -51,4 +51,28 @@ public class JpaCharacteristicDao implements CharacteristicDao {
         return q.getResultList();
     }
 
+    @Override
+    public List<Characteristic> getWithPagination(String pag, int recordsPerPage) {
+        TypedQuery<Characteristic> query=entityManager.createQuery("select c from Characteristic c",Characteristic.class);
+
+        int firstResult = (Integer.parseInt(pag) - 1) * recordsPerPage;
+        query.setFirstResult(firstResult);
+        query.setMaxResults(recordsPerPage);
+
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Characteristic> getTopLiked() {
+        TypedQuery<Characteristic> q=entityManager.createQuery("select c from Characteristic c order by c.nrLikes DESC",Characteristic.class);
+        q.setMaxResults(10);
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Characteristic> getTopDisliked() {
+        TypedQuery<Characteristic> q=entityManager.createQuery("select c from Characteristic c order by c.nrDislikes DESC",Characteristic.class);
+        q.setMaxResults(10);
+        return q.getResultList();
+    }
 }

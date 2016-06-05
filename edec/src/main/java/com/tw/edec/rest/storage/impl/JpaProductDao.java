@@ -3,18 +3,15 @@ package com.tw.edec.rest.storage.impl;
 import com.tw.edec.rest.models.Brand;
 import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.storage.ProductDao;
-import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
-
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 
 @Repository
 public class JpaProductDao implements ProductDao {
@@ -108,9 +105,9 @@ public class JpaProductDao implements ProductDao {
 
     @Override
     public List<Product> getSimilarProducts(Product product) {
-        //TODO generare produse random; acum extrage aceleasi 5 produse pentru o categorie..not so good
-        String query="select p from Product p where p.category=:categoryName AND p.name<>:productName";
-        TypedQuery<Product> q=entityManager.createQuery("select p from Product p where p.category=:categoryName AND p.name<>:productName",Product.class);
+
+        String query="select * from products p where p.category=:categoryName AND p.name<>:productName ORDER BY DBMS_RANDOM.RANDOM";
+        Query q=entityManager.createNativeQuery(query,Product.class);
         q.setParameter("categoryName",product.getCategory());
         q.setParameter("productName",product.getName());
         q.setMaxResults(5);
@@ -149,6 +146,31 @@ public class JpaProductDao implements ProductDao {
     public List<Product> getTop5Added() {
         TypedQuery<Product> q=entityManager.createQuery("select p from Product p order by p.timestamp DESC",Product.class);
         q.setMaxResults(5);
+        return q.getResultList();
+    }
+
+    public List<Product> getSuggestions(Long userId){
+        String query="select  distinct p.* from products p\n" +
+                "join product_characteristic pc on pc.product_id=p.id\n" +
+                "join characteristics c on c.id=pc.characteristic_id\n" +
+                "join user_likes ul on ul.characteristic_id=pc.characteristic_id\n" +
+                "where ul.user_id=:userId";
+
+        Query q=entityManager.createNativeQuery(query,Product.class).setParameter("userId",userId);
+
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Product> getProductsToAvoid(Long userId) {
+        String query="select  distinct p.* from products p\n" +
+                "join product_characteristic pc on pc.product_id=p.id\n" +
+                "join characteristics c on c.id=pc.characteristic_id\n" +
+                "join user_dislikes ul on ul.characteristic_id=pc.characteristic_id\n" +
+                "where ul.user_id=:userId";
+
+        Query q=entityManager.createNativeQuery(query,Product.class).setParameter("userId",userId);
+
         return q.getResultList();
     }
 }

@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +62,9 @@
                 <div class="col-md-4">
 				    <div class="single-sidebar">
 				      <h3>Stores</h3>
-  					  <h4 class="list-group-item-heading"><a href="http://www.amazon.com/Apple-iPhone-16GB-Space-Gray/dp/B00YD5400Y/ref=sr_1_1?s=wireless&ie=UTF8&qid=1463524014&sr=1-1&refinements=p_n_feature_keywords_four_browse-bin%3A6787348011%2Cp_36%3A2491159011"><b>Amazon</b>:$10.10</a></h4>         
+                        <c:set var="amazon" value="http://www.amazon.com/s?field-keywords=${product.name}"/>
+                        <c:set var="amazonURL" value="${fn:replace(amazon,' ','%20')}"/>
+  					  <h4 class="list-group-item-heading"><a href="<c:url value="${amazonURL}" />"><b>Amazon</b></a></h4>
 				    </div>
                     <div class="single-sidebar">
                           <h3>About Brand</h3>
@@ -91,8 +94,8 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="product-images">
-                                    <div class="product-main-img" <%--style="display:inline-block; height:159px; overflow:hidden; width:153px;"--%>>
-                                            <img id="lala" <%--style="height:159px; border:10px darkviolet"--%> src="${product.pictureURL}" alt="">
+                                    <div class="product-main-img" >
+                                            <img id="lala" src="${product.pictureURL}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -111,27 +114,123 @@
                                         </ul>
                                         <div class="tab-content">
 											<div id="home" class="tab-pane fade in active">
+                                                <p style="font-size: 1.25em;">${product.description}</p>
+                                                <br/><br/>
 											   <h3 style="color:#ffb366">Characteristics</h3>
-											    <ul>
                                                     <c:forEach items="${characteristics}" var="characteristic" varStatus="i">
                                                         <li>
                                                         <b>${characteristic.name}</b>
                                                             <sec:authorize access="hasRole('ROLE_USER')">
-                                                                <button type="button" class="btn btn-info btn-xs ">Like</button>
-                                                                <button type="button" class="btn btn-info btn-xs">Dislike</button>
+                                                                <c:set var="queryParameters" value="name=${characteristic.name}&product=${product.name}"/>
+                                                                <c:set var="queryParam" value="${fn:replace(queryParameters,' ','%20')}"/>
+                                                                <c:url value="/like?${queryParam}" var="likeChar" />
+                                                                <c:url value="/dislike?${queryParam}" var="dislikeChar" />
+
+                                                                <c:set var="contains" value="false" />
+                                                                <c:forEach var="userLike" items="${userLikes}">
+                                                                    <c:if test="${userLike.name eq characteristic.name}">
+                                                                        <c:set var="contains" value="true" />
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                                <c:choose>
+                                                                    <c:when test="${contains eq true}">
+                                                                        <a href="#"><button type="button" class="btn btn-info btn-xs">Like</button></a>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <a href="${likeChar}"><button type="button" class="btn btn-info btn-xs">Like</button></a>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+
+                                                                <c:set var="contains" value="false" />
+                                                                <c:forEach var="userDislike" items="${userDislikes}">
+                                                                    <c:if test="${userDislike.name eq characteristic.name}">
+                                                                        <c:set var="contains" value="true" />
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                                <c:choose>
+                                                                    <c:when test="${contains eq true}">
+                                                                        <a href="#"><button type="button" class="btn btn-info btn-xs">Dislike</button></a>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <a href="${dislikeChar}"><button type="button" class="btn btn-info btn-xs">Dislike</button></a>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+
+
                                                             </sec:authorize>
                                                         </li>
-
+                                                        <br/>
                                                     </c:forEach>
 												</ul>
 											</div>
 											<div id="hom" class="tab-pane fade">
 											 <h2 style="color:#ffb366"><i class="fa fa-heartbeat"></i>Health<span class="badge">${product.healthScore}</span></h2>
-											 <p>This product has a high nutrition score.</p>
+											 <p>
+                                                 <c:choose>
+                                                     <c:when test="${product.healthScore > 9}">
+                                                         HealthScore intre 9 si 10.
+                                                     </c:when>
+                                                     <c:when test="${product.healthScore > 8}">
+                                                         HealthScore intre 8 si 9.
+                                                     </c:when>
+                                                     <c:when test="${product.healthScore > 7}">
+                                                         HealthScore intre 7 si 8.
+                                                     </c:when>
+                                                     <c:when test="${product.healthScore > 6}">
+                                                        HealthScore intre 6 si 7.
+                                                     </c:when>
+                                                     <c:when test="${product.healthScore > 5}">
+                                                        HealthScore intre 5 si 6.
+                                                     </c:when>
+                                                     <c:otherwise>
+                                                         HealthScore mai mic decat 5.
+                                                     </c:otherwise>
+                                                 </c:choose>
+                                             </p>
 											 <h2 style="color:#ffb366"><i class="fa fa-leaf"></i>Environment<span class="badge">${product.environmentScore}</span></h2>
-											 <p>This company's environmental policies, practices and performance place it among the best 5% of companies rated by EDeC.</p>
+											 <p>
+                                                 <c:choose>
+                                                     <c:when test="${product.environmentScore > 9}">
+                                                         EnvironmentScore intre 9 si 10.
+                                                     </c:when>
+                                                     <c:when test="${product.environmentScore > 8}">
+                                                         EnvironmentScore intre 8 si 9.
+                                                     </c:when>
+                                                     <c:when test="${product.environmentScore > 7}">
+                                                         EnvironmentScore intre 7 si 8.
+                                                     </c:when>
+                                                     <c:when test="${product.environmentScore > 6}">
+                                                         EnvironmentScore intre 6 si 7.
+                                                     </c:when>
+                                                     <c:when test="${product.environmentScore > 5}">
+                                                         EnvironmentScore intre 5 si 6.
+                                                     </c:when>
+                                                     <c:otherwise>
+                                                         EnvironmentScore mai mic decat 5.
+                                                     </c:otherwise>
+                                                 </c:choose>
+                                             </p>
 											<h2 style="color:#ffb366"><i class="fa fa-child"></i>Society<span class="badge">${product.societyScore}</span></h2>
-											<p> This company's social policies, practices and performance place it among the best 5% of companies rated by EDeC.</p>
+											<p> <c:choose>
+                                                <c:when test="${product.societyScore > 9}">
+                                                    SocietyScore intre 9 si 10.
+                                                </c:when>
+                                                <c:when test="${product.societyScore > 8}">
+                                                    SocietyScore intre 8 si 9.
+                                                </c:when>
+                                                <c:when test="${product.societyScore > 7}">
+                                                    SocietyScore intre 7 si 8.
+                                                </c:when>
+                                                <c:when test="${product.societyScore > 6}">
+                                                    SocietyScore intre 6 si 7.
+                                                </c:when>
+                                                <c:when test="${product.societyScore > 5}">
+                                                    SocietyScore intre 5 si 6.
+                                                </c:when>
+                                                <c:otherwise>
+                                                    SocietyScore mai mic decat 5.
+                                                </c:otherwise>
+                                            </c:choose></p>
 											</div>
 											</div>
                                     </div>
@@ -146,15 +245,17 @@
                             <div class="related-products-carousel">
 
                                 <c:forEach items="${relatedProducts}" var="relatedProduct" varStatus="i">
+                                    <c:set var="related" value="/products/${relatedProduct.name}"/>
+                                    <c:set var="relatedURL" value="${fn:replace(related,' ','%20')}"/>
                                 <div class="single-product">
                                     <div class="product-f-image">
                                         <img src="${relatedProduct.pictureURL}" alt="">
                                         <div class="product-hover">
-                                            <a href="<c:url value="/products/${relatedProduct.name}"/>" class="view-details-link"><i class="fa fa-link"></i>See details</a>
+                                            <a href="<c:url value="${relatedURL}"/>" class="view-details-link"><i class="fa fa-link"></i>See details</a>
                                         </div>
                                     </div>
 
-                                    <h2><a href="<c:url value="/products/${relatedProduct.name}"/>">${relatedProduct.name}</a></h2>
+                                    <h2><a href="<c:url value="${relatedURL}"/>">${relatedProduct.name}</a></h2>
 									<div class="product-wid-rating">
                                         <p><b>${relatedProduct.overallScore}</b></p>
                                     </div>

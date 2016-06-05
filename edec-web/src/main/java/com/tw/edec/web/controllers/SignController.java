@@ -20,11 +20,9 @@ public class SignController {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String REST_URL="http://localhost:8181/edec";
-
     @RequestMapping(value="/sign",method = RequestMethod.GET)
     public String showLoginRegister(Model model){
-        System.out.println("showLoginRegister");
+        System.out.println("\ndisplayLoginRegister");
 
         User userForm = new User();
         model.addAttribute("userForm", userForm);
@@ -36,7 +34,7 @@ public class SignController {
 
     @RequestMapping(value="/loginfailed",method = RequestMethod.GET)
     public String loginFailed(Model model){
-        System.out.println("loginFailed");
+        System.out.println("\ndisplay LoginFailed");
 
         User userForm = new User();
         model.addAttribute("userForm", userForm);
@@ -50,10 +48,10 @@ public class SignController {
     @RequestMapping(value="/sign",method = RequestMethod.POST)
     public String processRegistration(@ModelAttribute("userForm") User user, Model model){
 
-        HttpEntity<User> request = new HttpEntity<>(user);
+        Requests requests=new Requests();
+
         try{
-            restTemplate
-                    .exchange(REST_URL + "/users/", HttpMethod.POST, request, User.class);
+            requests.postUser(restTemplate,user);
 
         }catch(HttpClientErrorException e){
             ErrorHandler errorHandler=new ErrorHandler(e);

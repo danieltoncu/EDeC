@@ -1,9 +1,7 @@
 package com.tw.edec.rest.storage.impl;
 
 import com.tw.edec.rest.models.Characteristic;
-import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.models.UserDislike;
-import com.tw.edec.rest.models.UserLike;
 import com.tw.edec.rest.storage.UserDislikeDao;
 import org.springframework.stereotype.Repository;
 
@@ -35,7 +33,7 @@ public class JpaUserDislikeDao implements UserDislikeDao {
     @Override
     public void removeUserDislike(String username,String characteristicName) {
         StoredProcedureQuery query = entityManager
-                .createStoredProcedureQuery("manage_users_dislikes.delete_dislike_product")
+                .createStoredProcedureQuery("manage_users_dislikes.delete_dislike_characteristic")
                 .registerStoredProcedureParameter(1,String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter(2,String.class, ParameterMode.IN)
                 .registerStoredProcedureParameter(3,String.class,ParameterMode.OUT)

@@ -1,7 +1,6 @@
 package com.tw.edec.rest.storage.impl;
 
 import com.tw.edec.rest.models.Characteristic;
-import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.models.ProductCharacteristic;
 import com.tw.edec.rest.storage.ProductCharacteristicDao;
 import org.springframework.stereotype.Repository;

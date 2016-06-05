@@ -31,4 +31,6 @@ public interface ProductDao {
     List<Product> getTop5Environment();
 
     List<Product> getTop5Added();
+    List<Product> getSuggestions(Long userId);
+    List<Product> getProductsToAvoid(Long userId);
 }

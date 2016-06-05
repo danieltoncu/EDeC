@@ -1,7 +1,6 @@
 package com.tw.edec.rest.storage;
 
 import com.tw.edec.rest.models.Characteristic;
-import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.models.UserDislike;
 
 import java.util.List;

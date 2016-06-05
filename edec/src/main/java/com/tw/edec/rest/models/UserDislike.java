@@ -1,8 +1,7 @@
 package com.tw.edec.rest.models;
 
-import oracle.sql.CHAR;
-
 import javax.persistence.*;
+
 
 @Entity
 @Table(name="user_dislikes")

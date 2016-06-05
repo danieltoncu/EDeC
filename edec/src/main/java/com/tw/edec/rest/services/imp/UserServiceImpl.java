@@ -1,16 +1,16 @@
 package com.tw.edec.rest.services.imp;
 
+import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.models.User;
 import com.tw.edec.rest.models.UserPreferenceCount;
 import com.tw.edec.rest.models.UserRole;
 import com.tw.edec.rest.services.UserService;
+import com.tw.edec.rest.storage.ProductDao;
 import com.tw.edec.rest.storage.UserDao;
-import org.hibernate.JDBCException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -18,6 +18,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private ProductDao productDao;
 
     @Override
     public User addUser(User user) {
@@ -66,4 +69,20 @@ public class UserServiceImpl implements UserService {
         return userDao.getByUsername(username);
     }
 
+    @Override
+    public List<User> getSimilarUsers(String username) {
+        Long userId=userDao.getId(username);
+        return userDao.getSimilarUsers(userId);
+    }
+
+    public List<Product> getSuggestions(String username){
+        Long userId=userDao.getId(username);
+        return productDao.getSuggestions(userId);
+    }
+
+    @Override
+    public List<Product> getProductsToAvoid(String username) {
+        Long userId=userDao.getId(username);
+        return productDao.getProductsToAvoid(userId);
+    }
 }

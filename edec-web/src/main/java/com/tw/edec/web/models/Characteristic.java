@@ -6,6 +6,10 @@ public class Characteristic {
 
     private String name;
 
+    private Long nrLikes;
+
+    private Long nrDislikes;
+
     public Long getId() {
         return id;
     }
@@ -20,5 +24,21 @@ public class Characteristic {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getNrLikes() {
+        return nrLikes;
+    }
+
+    public void setNrLikes(Long nrLikes) {
+        this.nrLikes = nrLikes;
+    }
+
+    public Long getNrDislikes() {
+        return nrDislikes;
+    }
+
+    public void setNrDislikes(Long nrDislikes) {
+        this.nrDislikes = nrDislikes;
     }
 }

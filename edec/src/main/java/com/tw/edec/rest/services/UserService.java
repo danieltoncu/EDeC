@@ -1,18 +1,25 @@
 package com.tw.edec.rest.services;
 
+import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.models.User;
 
 import java.util.List;
 
 public interface UserService {
 
-    public User addUser(User user);
+    User addUser(User user);
 
-    public User updateUser(String username,User user);
+    User updateUser(String username,User user);
 
-    public void deleteUser(String username);
+    void deleteUser(String username);
 
-    public List<User> getAll();
+    List<User> getAll();
 
-    public User getUser(String username);
+    User getUser(String username);
+
+    List<User> getSimilarUsers(String username);
+
+    List<Product> getSuggestions(String username);
+
+    List<Product> getProductsToAvoid(String username);
 }

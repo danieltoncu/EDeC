@@ -1,7 +1,6 @@
 package com.tw.edec.rest.controllers;
 
 import com.tw.edec.rest.models.Characteristic;
-import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.models.UserLike;
 import com.tw.edec.rest.services.UserLikeService;
 import org.springframework.beans.factory.annotation.Autowired;

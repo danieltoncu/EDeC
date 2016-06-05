@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,8 +69,11 @@
 					</thead>
 					<tbody>
 					  <c:forEach items="${products}" var="product" varStatus="i">
+                          <c:set var="url" value="/products/${product.name}"/>
+                          <c:set var="productURL" value="${fn:replace(url,' ','%20')}"/>
+
 					  <tr>
-						  <td><a href="<c:url value="/products/${product.name}"/>"><img src="${product.pictureURL}" alt="" class="product-thumb"><h4><b>${product.name}</b></h4></a></td>
+						  <td><a href="<c:url value="${productURL}"/>"><img src="${product.pictureURL}" alt="" class="product-thumb"><h4><b>${product.name}</b></h4></a></td>
 						  <td><div class="product-wid-rating">
 							  <p><b>${product.overallScore}</b></p>
 						  </div>
@@ -77,7 +81,9 @@
 						  <td class="point">
 							  ${product.description}
 						  </td>
-						  <td><a href="#">Buy this product from Amazon</a></td>
+                          <c:set var="amazon" value="http://www.amazon.com/s?field-keywords=${product.name}"/>
+                          <c:set var="amazonURL" value="${fn:replace(amazon,' ','%20')}"/>
+						  <td><a href="${amazonURL}">Buy this product from Amazon</a></td>
 					  </tr>
 					  </c:forEach>
 					</tbody>
@@ -95,13 +101,27 @@
                 <li class="disabled"><a href="#">«</a></li>
             </c:when>
             <c:otherwise>
-                <li><a href="<c:url value="/search?pag=${nrPagina-1}&name=${name}"/>">«</a></li>
+                <c:if test="${not empty category}">
+                    <li><a href="<c:url value="/search?pag=${nrPagina-1}&category=${category}"/>">«</a></li>
+                </c:if>
+
+                <c:if test="${empty category}">
+                    <li><a href="<c:url value="/search?pag=${nrPagina-1}&name=${name}"/>">«</a></li>
+                </c:if>
+
             </c:otherwise>
             </c:choose>
+
                 <li class="active"><a href="#">${nrPagina} <span class="sr-only">(current)</span></a></li>
+
             <c:choose>
-            <c:when test="${not empty products}">
-			    <li><a href="<c:url value="/search?pag=${nrPagina+1}&name=${name}"/>">»</a></li>
+            <c:when test="${fn:length(products) eq 5}">
+                <c:if test="${not empty category}">
+                    <li><a href="<c:url value="/search?pag=${nrPagina+1}&category=${category}"/>">»</a></li>
+                </c:if>
+                <c:if test="${empty category}">
+                    <li><a href="<c:url value="/search?pag=${nrPagina+1}&name=${name}"/>">»</a></li>
+                </c:if>
             </c:when>
             <c:otherwise>
                 <li class="disabled"><a href="#">»</a></li>

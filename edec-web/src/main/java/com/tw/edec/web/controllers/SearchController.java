@@ -30,10 +30,10 @@ public class SearchController {
 
     private static final String REST_URL="http://localhost:8181/edec";
 
-    private String createURLForExchange(Integer pag,String name,String category_id){
+    private String createURLForExchange(Integer pag,String name,String category){
         String URL=REST_URL+"/products?pag=" + pag;
         if(name!=null)   URL+="&name="+name;    //search din searchBox
-        if(category_id!=null)   URL+="&category="+category_id;  //search din click pe categorie
+        if(category!=null)   URL+="&category="+category;  //search din click pe categorie
         return URL;
     }
 
@@ -41,8 +41,9 @@ public class SearchController {
     public String displaySearch(Model model,
                                 @RequestParam(required = false) Integer pag,
                                 @RequestParam(required = false) String name,
-                                @RequestParam(required = false) String category, Principal principal){
-        System.out.println("displaySearch");
+                                @RequestParam(required = false) String category,
+                                Principal principal){
+        System.out.println("\ndisplaySearch");
 
         if(principal!=null)
             model.addAttribute("username",principal.getName());
@@ -51,19 +52,14 @@ public class SearchController {
         searchCriteria.setSearchInput(name);
 
         String URL = createURLForExchange(pag,name,category);
-        ResponseEntity<Product[]> responseEntity;
+        Requests requests=new Requests();
 
         try {
-            responseEntity = restTemplate
-                    .exchange(URL, HttpMethod.GET, null, Product[].class);
-            List<Product> products = Arrays.asList(responseEntity.getBody());
-
-            System.out.println("HTTPStatusCode: " + responseEntity.getStatusCode());
+            requests.getSearchProducts(restTemplate,model,URL);
 
             model.addAttribute("nrPagina",pag);
             model.addAttribute("name",name);
-            shortDescription(products);
-            model.addAttribute("products",products);
+            model.addAttribute("category",category);
 
         } catch (HttpClientErrorException e) {
 
@@ -83,17 +79,6 @@ public class SearchController {
         return "redirect:/search";
     }
 
-    private void shortDescription(List<Product> products){
-        for(Product product:products){
-            String text;
-            if(product.getDescription().length()<35)
-            {
-                int i=product.getDescription().length();
-                product.setDescription(product.getDescription().substring(0,i)+"...");
-            }
-            else
-            product.setDescription(product.getDescription().substring(0,35)+"...");
-        }
-    }
+
 
 }

@@ -18,6 +18,12 @@ public class Characteristic {
     @Column(unique=true,nullable = false,name="name")
     private String name;
 
+    @Column(name="nr_likes")
+    private Long nrLikes=0L;
+
+    @Column(name="nr_dislikes")
+    private Long nrDislikes=0L;
+
     @JsonIgnore
     @OneToMany(mappedBy = "characteristic",cascade = {CascadeType.REMOVE})
     private Set<ProductCharacteristic> productCharacteristicSet;
@@ -44,5 +50,21 @@ public class Characteristic {
 
     public void setProductCharacteristicSet(Set<ProductCharacteristic> productCharacteristicSet) {
         this.productCharacteristicSet = productCharacteristicSet;
+    }
+
+    public Long getNrLikes() {
+        return nrLikes;
+    }
+
+    public void setNrLikes(Long nrLikes) {
+        this.nrLikes = nrLikes;
+    }
+
+    public Long getNrDislikes() {
+        return nrDislikes;
+    }
+
+    public void setNrDislikes(Long nrDislikes) {
+        this.nrDislikes = nrDislikes;
     }
 }

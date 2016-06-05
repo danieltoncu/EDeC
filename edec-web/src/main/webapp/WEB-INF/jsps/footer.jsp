@@ -31,7 +31,7 @@
                         </sec:authorize>
 
                         <li><a href="<c:url value="/about"/>">About</a></li>
-                        <li><a href="#">Front page</a></li>
+                        <li><a href="<c:url value="/statistics"/>">Statistics</a></li>
                     </ul>
                 </div>
             </div>

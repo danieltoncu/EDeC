@@ -1,7 +1,6 @@
 package com.tw.edec.rest.storage.impl;
 
 import com.tw.edec.rest.models.Characteristic;
-import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.models.UserLike;
 import com.tw.edec.rest.storage.UserLikeDao;
 import org.springframework.stereotype.Repository;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collector;
 
 @Repository
 public class JpaUserLikeDao implements UserLikeDao {
@@ -34,7 +32,15 @@ public class JpaUserLikeDao implements UserLikeDao {
     @Transactional
     @Override
     public void removeUserLike(String username,String characteristicName) {
+        StoredProcedureQuery query = entityManager
+                .createStoredProcedureQuery("manage_users_likes.delete_like_characteristic")
+                .registerStoredProcedureParameter(1,String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter(2,String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter(3,String.class, ParameterMode.OUT)
+                .setParameter(1,username)
+                .setParameter(2,characteristicName);
 
+        query.execute();
     }
 
     @Override

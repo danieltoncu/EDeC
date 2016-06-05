@@ -2,6 +2,7 @@ package com.tw.edec.rest.controllers;
 
 import com.tw.edec.rest.models.Product;
 import com.tw.edec.rest.services.ProductService;
+import com.tw.edec.rest.storage.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,8 @@ public class ProductsController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ProductDao productDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Product> getProducts(@RequestParam(required = false) Map<String, String> q){
@@ -47,5 +50,30 @@ public class ProductsController {
     @RequestMapping(value="/{productName}/relatedProducts", method= RequestMethod.GET)
     public List<Product> getRelatedProducts(@PathVariable String productName){
         return productService.getRelatedProducts(productName);
+    }
+
+    @RequestMapping(value = "/top5overall", method = RequestMethod.GET)
+    public List<Product> topFiveByOverall(){
+        return productDao.getTop5Overall();
+    }
+
+    @RequestMapping(value="/top5health", method = RequestMethod.GET)
+    public List<Product> topFiveByHealth(){
+        return productDao.getTop5Health();
+    }
+
+    @RequestMapping(value="/top5society", method = RequestMethod.GET)
+    public List<Product> topFiveBySociety(){
+        return productDao.getTop5Society();
+    }
+
+    @RequestMapping(value="/top5environment", method = RequestMethod.GET)
+    public List<Product> topFiveByEnvironment(){
+        return productDao.getTop5Environment();
+    }
+
+    @RequestMapping(value="/top5added", method=RequestMethod.GET)
+    public List<Product> topFiveByTimestamp(){
+        return productDao.getTop5Added();
     }
 }
