@@ -39,6 +39,15 @@ public class MyAccountController {
 
             requests.getUserDislikes(restTemplate,model,principal);
 
+            requests.getSimilarUsers(restTemplate,model,principal);
+
+            String URL="http://localhost:8181/edec/users/"+principal.getName();
+
+            requests.getSuggestions(restTemplate,model,URL+"/suggestions");
+            model.addAttribute("nrPaginaS",1);
+
+            requests.getProductsToAvoid(restTemplate,model,URL+"/toAvoid");
+            model.addAttribute("nrPaginaA",1);
 
         }catch(HttpClientErrorException e) {
 

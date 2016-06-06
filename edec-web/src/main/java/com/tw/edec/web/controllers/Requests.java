@@ -181,11 +181,32 @@ public class Requests {
         System.out.println("Get Top5PermissiveUsers:\tHTTPStatusCode: " + responseEntity.getStatusCode());
     }
 
-    void getSuggestions(RestTemplate restTemplate, Model model,Principal principal) throws HttpClientErrorException{
+    void getSuggestions(RestTemplate restTemplate, Model model, String URL) throws HttpClientErrorException{
+        ResponseEntity<Product[]> responseEntity;
+        responseEntity = restTemplate.exchange(URL, HttpMethod.GET, null, Product[].class);
+        List<Product> products = Arrays.asList(responseEntity.getBody());
+        shortDescription(products);
+        model.addAttribute("suggestions",products);
 
+        System.out.println("Get ProductsSuggestions:\tHTTPStatusCode: " + responseEntity.getStatusCode());
     }
 
-    void getProductsToAvoid(RestTemplate restTemplate, Model model,Principal principal) throws HttpClientErrorException{
+    void getProductsToAvoid(RestTemplate restTemplate, Model model, String URL) throws HttpClientErrorException{
+        ResponseEntity<Product[]> responseEntity;
+        responseEntity = restTemplate.exchange(URL, HttpMethod.GET, null, Product[].class);
+        List<Product> products = Arrays.asList(responseEntity.getBody());
+        shortDescription(products);
+        model.addAttribute("toAvoid",products);
 
+        System.out.println("Get ProductsToAvoid:\tHTTPStatusCode: " + responseEntity.getStatusCode());
+    }
+
+    void getSimilarUsers(RestTemplate restTemplate, Model model,Principal principal) throws HttpClientErrorException{
+        ResponseEntity<User[]> responseEntity;
+        List<User> users;
+        responseEntity = restTemplate.exchange(REST_URL+"/users/"+principal.getName()+"/similarUsers", HttpMethod.GET, null, User[].class);
+        users= Arrays.asList(responseEntity.getBody());
+        model.addAttribute("similarUsers", users);
+        System.out.println("Get SimilarUsers:\tHTTPStatusCode: " + responseEntity.getStatusCode());
     }
 }

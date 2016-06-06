@@ -43,18 +43,8 @@
     </div> <!-- End site branding area -->
 
     <%@ include file="menu.jsp" %>
-    
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>"Aici sa avem un citat sau ceva in genul asta"</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+	<%@ include file="citat.jsp" %>
     
     
     <div class="single-product-area">

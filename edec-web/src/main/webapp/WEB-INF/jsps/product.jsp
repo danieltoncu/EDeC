@@ -41,18 +41,8 @@
     </div> <!-- End site branding area -->
 
     <%@ include file="menu.jsp" %>
-    
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>"Aici sa avem un citat sau ceva in genul asta"</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <%@ include file="citat.jsp" %>
     
     
     <div class="single-product-area">
@@ -67,23 +57,13 @@
   					  <h4 class="list-group-item-heading"><a href="<c:url value="${amazonURL}" />"><b>Amazon</b></a></h4>
 				    </div>
                     <div class="single-sidebar">
-                          <h3>About Brand</h3>
+                          <h3>About Product</h3>
                           <div class="list-group">
                              <a class="list-group-item list-group-item-warning">
-                               <h1 class="list-group-item-heading">Aveeno.</h1>
+                               <h1 class="list-group-item-heading">Description</h1>
                              </a>
                              <a class="list-group-item">
-                               <h4 class="list-group-item-heading"><b>Company Score</b></h4>
-                               <p class="list-group-item-text"><b>Overall Company Score</b>: 5,8</p>
-							   <p class="list-group-item-text"><b>Environment</b>: 6,6</p>
-							   <p class="list-group-item-text"><b>Society</b>: 6,2</p>
-                             </a>
-                             <a class="list-group-item">
-                                <h4 class="list-group-item-heading"><b>More Info</b></h4>
-                                <p class="list-group-item-text"><b>Brand: </b>Aveeno</p>
-								<p class="list-group-item-text"><b>Parent: </b>Johnson Consumer</p>
-								<p class="list-group-item-text"><b>Company: </b>Products Company</p>
-								<p class="list-group-item-text"><b>Parent Company: </b>Medicine Cabinet</p>
+                                 <p style="font-size: 1.25em;">${product.description}</p>
                              </a>
                           </div>
                     </div>
@@ -95,7 +75,7 @@
                             <div class="col-sm-6">
                                 <div class="product-images">
                                     <div class="product-main-img" >
-                                            <img id="lala" src="${product.pictureURL}" alt="">
+                                            <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" class="img-responsive" id="lala" src="${product.pictureURL}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -109,12 +89,12 @@
                                     <div role="tabpanel">
                                         <ul class="product-tab" role="tablist">
 										    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
-										    <li role="presentation" ><a href="#hom" aria-controls="hom" role="tab" data-toggle="tab">Behind the Ratings</a></li>
+                                            <li role="presentation" ><a href="#hom" aria-controls="hom" role="tab" data-toggle="tab">Behind the Ratings</a></li>
                                             
                                         </ul>
                                         <div class="tab-content">
 											<div id="home" class="tab-pane fade in active">
-                                                <p style="font-size: 1.25em;">${product.description}</p>
+                                                <%--<p style="font-size: 1.25em;">${product.description}</p>--%>
                                                 <br/><br/>
 											   <h3 style="color:#ffb366">Characteristics</h3>
                                                     <c:forEach items="${characteristics}" var="characteristic" varStatus="i">
@@ -134,7 +114,7 @@
                                                                 </c:forEach>
                                                                 <c:choose>
                                                                     <c:when test="${contains eq true}">
-                                                                        <a href="#"><button type="button" class="btn btn-info btn-xs">Like</button></a>
+                                                                        <a href="#"><button type="button" class="btn btn-info btn-xs active">Like</button></a>
                                                                     </c:when>
                                                                     <c:otherwise>
                                                                         <a href="${likeChar}"><button type="button" class="btn btn-info btn-xs">Like</button></a>
@@ -149,7 +129,7 @@
                                                                 </c:forEach>
                                                                 <c:choose>
                                                                     <c:when test="${contains eq true}">
-                                                                        <a href="#"><button type="button" class="btn btn-info btn-xs">Dislike</button></a>
+                                                                        <a href="#"><button type="button" class="btn btn-info btn-xs active">Dislike</button></a>
                                                                     </c:when>
                                                                     <c:otherwise>
                                                                         <a href="${dislikeChar}"><button type="button" class="btn btn-info btn-xs">Dislike</button></a>
@@ -168,22 +148,22 @@
 											 <p>
                                                  <c:choose>
                                                      <c:when test="${product.healthScore > 9}">
-                                                         HealthScore intre 9 si 10.
+                                                         This product has a high nutrition score.
                                                      </c:when>
                                                      <c:when test="${product.healthScore > 8}">
-                                                         HealthScore intre 8 si 9.
+                                                         This product has a high nutrition score.
                                                      </c:when>
                                                      <c:when test="${product.healthScore > 7}">
-                                                         HealthScore intre 7 si 8.
+                                                         This product has a high nutrition score.
                                                      </c:when>
                                                      <c:when test="${product.healthScore > 6}">
-                                                        HealthScore intre 6 si 7.
+                                                         This product has a high nutrition score.
                                                      </c:when>
                                                      <c:when test="${product.healthScore > 5}">
-                                                        HealthScore intre 5 si 6.
+                                                         This product has a high nutrition score.
                                                      </c:when>
                                                      <c:otherwise>
-                                                         HealthScore mai mic decat 5.
+                                                         This product has a high nutrition score.
                                                      </c:otherwise>
                                                  </c:choose>
                                              </p>
@@ -191,44 +171,44 @@
 											 <p>
                                                  <c:choose>
                                                      <c:when test="${product.environmentScore > 9}">
-                                                         EnvironmentScore intre 9 si 10.
+                                                         This company's environmental policies, practices and performance place it among the best 22% of companies rated by EDeC.
                                                      </c:when>
                                                      <c:when test="${product.environmentScore > 8}">
-                                                         EnvironmentScore intre 8 si 9.
+                                                         This company's environmental policies, practices and performance place it among the best 36% of companies rated by EDeC.
                                                      </c:when>
                                                      <c:when test="${product.environmentScore > 7}">
-                                                         EnvironmentScore intre 7 si 8.
+                                                         This company's environmental policies, practices and performance place it among the best 45% of companies rated by EDeC.
                                                      </c:when>
                                                      <c:when test="${product.environmentScore > 6}">
-                                                         EnvironmentScore intre 6 si 7.
+                                                         This company's environmental policies, practices and performance place it among the best 50% of companies rated by EDeC.
                                                      </c:when>
                                                      <c:when test="${product.environmentScore > 5}">
-                                                         EnvironmentScore intre 5 si 6.
+                                                         This company's environmental policies, practices and performance place it among the best 67% of companies rated by EDeC.
                                                      </c:when>
                                                      <c:otherwise>
-                                                         EnvironmentScore mai mic decat 5.
+                                                         This company's environmental policies, practices and performance place it among the best 90% of companies rated by EDeC.
                                                      </c:otherwise>
                                                  </c:choose>
                                              </p>
 											<h2 style="color:#ffb366"><i class="fa fa-child"></i>Society<span class="badge">${product.societyScore}</span></h2>
 											<p> <c:choose>
                                                 <c:when test="${product.societyScore > 9}">
-                                                    SocietyScore intre 9 si 10.
+                                                    This company's social policies, practices and performance place it among the best 5% of companies rated by EDeC.
                                                 </c:when>
                                                 <c:when test="${product.societyScore > 8}">
-                                                    SocietyScore intre 8 si 9.
+                                                    This company's social policies, practices and performance place it among the best 7% of companies rated by EDeC.
                                                 </c:when>
                                                 <c:when test="${product.societyScore > 7}">
-                                                    SocietyScore intre 7 si 8.
+                                                    This company's social policies, practices and performance place it among the best 25% of companies rated by EDeC.
                                                 </c:when>
                                                 <c:when test="${product.societyScore > 6}">
-                                                    SocietyScore intre 6 si 7.
+                                                    This company's social policies, practices and performance place it among the best 36% of companies rated by EDeC.
                                                 </c:when>
                                                 <c:when test="${product.societyScore > 5}">
-                                                    SocietyScore intre 5 si 6.
+                                                    This company's social policies, practices and performance place it among the best 55% of companies rated by EDeC.
                                                 </c:when>
                                                 <c:otherwise>
-                                                    SocietyScore mai mic decat 5.
+                                                    This company's social policies, practices and performance place it among the best 80% of companies rated by EDeC.
                                                 </c:otherwise>
                                             </c:choose></p>
 											</div>
@@ -249,7 +229,7 @@
                                     <c:set var="relatedURL" value="${fn:replace(related,' ','%20')}"/>
                                 <div class="single-product">
                                     <div class="product-f-image">
-                                        <img src="${relatedProduct.pictureURL}" alt="">
+                                        <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="${relatedProduct.pictureURL}" alt="">
                                         <div class="product-hover">
                                             <a href="<c:url value="${relatedURL}"/>" class="view-details-link"><i class="fa fa-link"></i>See details</a>
                                         </div>

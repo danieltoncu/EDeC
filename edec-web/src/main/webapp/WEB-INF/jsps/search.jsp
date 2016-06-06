@@ -41,18 +41,7 @@
 
 	<%@ include file="menu.jsp" %>
 
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>"Aici sa avem un citat sau ceva in genul asta"</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+    <%@ include file="citat.jsp" %>
 
     <div class="row">
 	    <div class="col-md-1"></div>
@@ -73,7 +62,7 @@
                           <c:set var="productURL" value="${fn:replace(url,' ','%20')}"/>
 
 					  <tr>
-						  <td><a href="<c:url value="${productURL}"/>"><img src="${product.pictureURL}" alt="" class="product-thumb"><h4><b>${product.name}</b></h4></a></td>
+						  <td><a href="<c:url value="${productURL}"/>"><img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="${product.pictureURL}" alt="" class="product-thumb"><h4><b>${product.name}</b></h4></a></td>
 						  <td><div class="product-wid-rating">
 							  <p><b>${product.overallScore}</b></p>
 						  </div>

@@ -37,20 +37,9 @@
     </div> <!-- End site branding area -->
 
 	<%@ include file="menu.jsp" %>
-    
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>"Aici sa avem un citat sau ceva in genul asta"</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    
+
+	<%@ include file="citat.jsp" %>
+
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
@@ -117,7 +106,7 @@
 														<img class="img-circle" src="<c:url value="/resources/img/user.png" />" alt="" />
 													</a>
 												</li>
-												<li role="presentation" class="">
+												<li style="visibility: hidden;" role="presentation" class="">
 													<a href="#user5" aria-controls="wafer" role="tab" data-toggle="tab">
 														<img class="img-circle" src="<c:url value="/resources/img/user.png" />" alt="" />
 													</a>
@@ -181,7 +170,7 @@
 														<img class="img-circle" src="<c:url value="/resources/img/user.png" />" alt="" />
 													</a>
 												</li>
-												<li role="presentation" class="">
+												<li style="visibility: hidden;" role="presentation" class="">
 													<a href="#user10" aria-controls="wafer" role="tab" data-toggle="tab">
 														<img class="img-circle" src="<c:url value="/resources/img/user.png" />" alt="" />
 													</a>

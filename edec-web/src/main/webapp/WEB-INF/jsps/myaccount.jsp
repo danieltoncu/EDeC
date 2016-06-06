@@ -44,17 +44,7 @@
 
 <%@ include file="menu.jsp" %>
 
-<div class="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>"Aici sa avem un citat sau ceva in genul asta"</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<%@ include file="citat.jsp" %>
 
 
 <div class="single-product-area">
@@ -69,6 +59,8 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">My list</a></li>
                         <li><a data-toggle="tab" href="#menu1">Users with Similar Preferences</a></li>
+                        <li><a data-toggle="tab" href="#menu2">Suggestions</a></li>
+                        <li><a data-toggle="tab" href="#menu3">To avoid</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -119,27 +111,27 @@
                                     <!-- Nav tabs -->
                                     <ul class="[ nav nav-justified ]" id="nav-tabs" role="tablist">
                                         <li role="presentation" class="active">
-                                            <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                                            <a href="#user1" aria-controls="dustin" role="tab" data-toggle="tab">
                                                 <img class="img-circle" src="<c:url value="/resources/img/user.png" />" alt="" />
                                             </a>
                                         </li>
                                         <li role="presentation" class="">
-                                            <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                                            <a href="#user2" aria-controls="daksh" role="tab" data-toggle="tab">
                                                 <img class="img-circle" src="<c:url value="/resources/img/user.png" />" alt="" />
                                             </a>
                                         </li>
                                         <li role="presentation" class="">
-                                            <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                                            <a href="#user3" aria-controls="anna" role="tab" data-toggle="tab">
                                                 <img class="img-circle" src="<c:url value="/resources/img/user.png" />" alt="" />
                                             </a>
                                         </li>
                                         <li role="presentation" class="">
-                                            <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                                            <a href="#user4" aria-controls="wafer" role="tab" data-toggle="tab">
                                                 <img class="img-circle" src="<c:url value="/resources/img/user.png" />" alt="" />
                                             </a>
                                         </li>
-                                        <li role="presentation" class="">
-                                            <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                                        <li style="visibility: hidden" role="presentation" class="">
+                                            <a href="#user5" aria-controls="wafer" role="tab" data-toggle="tab">
                                                 <img class="img-circle" src="<c:url value="/resources/img/user.png" />" alt="" />
                                             </a>
                                         </li>
@@ -148,51 +140,182 @@
                                 <div class="[ col-xs-1 col-sm-12 ]">
                                     <!-- Tab panes -->
                                     <div class="tab-content" id="tabs-collapse">
-                                        <div role="tabpanel" class="tab-pane fade in active" id="dustin">
-                                            <div class="tab-inner">
-                                                <p class="lead">Etiam tincidunt enim et pretium efficitur. Donec auctor leo sollicitudin eros iaculis sollicitudin.</p>
-                                                <hr>
-                                                <p><strong class="text-uppercase">Dustin Lamont</strong></p>
-                                            </div>
-                                        </div>
 
-                                        <div role="tabpanel" class="tab-pane fade" id="daksh">
-                                            <div class="tab-inner">
-                                                <p class="lead">Suspendisse dictum gravida est, nec consequat tortor venenatis a. Suspendisse vitae venenatis sapien.</p>
-                                                <hr>
-                                                <p><strong class="text-uppercase">Daksh Bhagya</strong></p>
-                                            </div>
-                                        </div>
+                                        <c:set var="count" value="0"/>
+                                        <c:forEach items="${similarUsers}" var="similarUser" varStatus="i">
+                                        <c:set var="count" value="${count + 1}"/>
 
-                                        <div role="tabpanel" class="tab-pane fade" id="anna">
-                                            <div class="tab-inner">
-                                                <p class="lead">Nullam suscipit ante ac arcu placerat, nec sagittis quam volutpat. Vestibulum aliquam facilisis velit ut ultrices.</p>
-                                                <hr>
-                                                <p><strong class="text-uppercase">Anna Pickard</strong></p>
+                                        <c:choose>
+                                        <c:when test="${count eq 1}">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="user${count}">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div role="tabpanel" class="tab-pane fade" id="user${count}">
+                                        </c:otherwise>
+                                        </c:choose>
+                                                <div class="tab-inner">
+                                                    <p class="lead">${similarUser.username} has similar tastes.</p>
+                                                    <hr>
+                                                    <p><strong class="text-uppercase">${similarUser.username}</strong></p>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div role="tabpanel" class="tab-pane fade" id="wafer">
-                                            <div class="tab-inner">
-                                                <p class="lead"> Fusce erat libero, fermentum quis sollicitudin id, venenatis nec felis. Morbi sollicitudin gravida finibus.</p>
-                                                <hr>
-                                                <p><strong class="text-uppercase">Wafer Baby</strong></p>
-                                            </div>
-                                        </div>
+                                        </c:forEach>
 
-                                        <div role="tabpanel" class="tab-pane fade" id="wafer">
-                                            <div class="tab-inner">
-                                                <p class="lead"> Fusce erat libero, fermentum quis sollicitudin id, venenatis nec felis. Morbi sollicitudin gravida finibus.</p>
-                                                <hr>
-                                                <p><strong class="text-uppercase">Wafer Baby</strong></p>
-                                            </div>
-                                        </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                        <div id="menu2" class="tab-pane fade">
+                            <div class="single-sidebar">
+                                <h2 class="sidebar-title">Suggestions:</h2>
+                                <%--<c:forEach items="${suggestions}" var="product" varStatus="i">
+                                    <div class="thubmnail-recent">
+                                        <img src="img/druide.jpe" class="recent-thumb" alt="">
+                                        <h2><a href="">Druide Refreshing Shower Gel</a></h2>
+                                        <div class="product-wid-rating">
+                                            <p><b>8.9</b></p>
+                                        </div>
+                                    </div>
+                                </c:forEach>--%>
+                                <table class="table table-striped">
+                                    <thead class="tables">
+                                    <tr>
+                                        <th>Products</th>
+                                        <th>Overall Score</th>
+                                        <th>Description</th>
+                                        <th>Buy</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${suggestions}" var="product" varStatus="i">
+                                        <c:set var="url" value="/products/${product.name}"/>
+                                        <c:set var="productURL" value="${fn:replace(url,' ','%20')}"/>
+
+                                        <tr>
+                                            <td><a href="<c:url value="${productURL}"/>"><img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="${product.pictureURL}" alt="" class="product-thumb"><h4><b>${product.name}</b></h4></a></td>
+                                            <td><div class="product-wid-rating">
+                                                <p><b>${product.overallScore}</b></p>
+                                            </div>
+                                            </td>
+                                            <td class="point">
+                                                    ${product.description}
+                                            </td>
+                                            <c:set var="amazon" value="http://www.amazon.com/s?field-keywords=${product.name}"/>
+                                            <c:set var="amazonURL" value="${fn:replace(amazon,' ','%20')}"/>
+                                            <td><a href="${amazonURL}">Buy this product from Amazon</a></td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                                <ul class="pagination">
+                                    <c:choose>
+                                        <c:when test="${nrPaginaS<2}">
+                                            <li class="disabled"><a href="#">«</a></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:if test="${not empty category}">
+                                                <li><a href="<c:url value="/search?pag=${nrPaginaS-1}&category=${category}"/>">«</a></li>
+                                            </c:if>
+
+                                            <c:if test="${empty category}">
+                                                <li><a href="<c:url value="/search?pag=${nrPaginaS-1}&name=${name}"/>">«</a></li>
+                                            </c:if>
+
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                    <li class="active"><a href="#">${nrPaginaS} <span class="sr-only">(current)</span></a></li>
+
+                                    <c:choose>
+                                        <c:when test="${fn:length(products) eq 5}">
+                                            <c:if test="${not empty category}">
+                                                <li><a href="<c:url value="/search?pag=${nrPaginaS+1}&category=${category}"/>">»</a></li>
+                                            </c:if>
+                                            <c:if test="${empty category}">
+                                                <li><a href="<c:url value="/search?pag=${nrPaginaS+1}&name=${name}"/>">»</a></li>
+                                            </c:if>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="disabled"><a href="#">»</a></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="menu3" class="tab-pane fade">
+                            <div class="single-sidebar">
+                                <h2 class="sidebar-title">Products to Avoid</h2>
+                                <table class="table table-striped">
+                                    <thead class="tables">
+                                    <tr>
+                                        <th>Products</th>
+                                        <th>Overall Score</th>
+                                        <th>Description</th>
+                                        <th>Buy</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${toAvoid}" var="product" varStatus="i">
+                                        <c:set var="url" value="/products/${product.name}"/>
+                                        <c:set var="productURL" value="${fn:replace(url,' ','%20')}"/>
+
+                                        <tr>
+                                            <td><a href="<c:url value="${productURL}"/>"><img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="${product.pictureURL}" alt="" class="product-thumb"><h4><b>${product.name}</b></h4></a></td>
+                                            <td><div class="product-wid-rating">
+                                                <p><b>${product.overallScore}</b></p>
+                                            </div>
+                                            </td>
+                                            <td class="point">
+                                                    ${product.description}
+                                            </td>
+                                            <c:set var="amazon" value="http://www.amazon.com/s?field-keywords=${product.name}"/>
+                                            <c:set var="amazonURL" value="${fn:replace(amazon,' ','%20')}"/>
+                                            <td><a href="${amazonURL}">Buy this product from Amazon</a></td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                                <ul class="pagination">
+                                    <c:choose>
+                                        <c:when test="${nrPaginaA<2}">
+                                            <li class="disabled"><a href="#">«</a></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:if test="${not empty category}">
+                                                <li><a href="<c:url value="/search?pag=${nrPaginaA-1}&category=${category}"/>">«</a></li>
+                                            </c:if>
+
+                                            <c:if test="${empty category}">
+                                                <li><a href="<c:url value="/search?pag=${nrPaginaA-1}&name=${name}"/>">«</a></li>
+                                            </c:if>
+
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                    <li class="active"><a href="#">${nrPaginaA} <span class="sr-only">(current)</span></a></li>
+
+                                    <c:choose>
+                                        <c:when test="${fn:length(products) eq 5}">
+                                            <c:if test="${not empty category}">
+                                                <li><a href="<c:url value="/search?pag=${nrPaginaA+1}&category=${category}"/>">»</a></li>
+                                            </c:if>
+                                            <c:if test="${empty category}">
+                                                <li><a href="<c:url value="/search?pag=${nrPaginaA+1}&name=${name}"/>">»</a></li>
+                                            </c:if>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="disabled"><a href="#">»</a></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </ul>
+                            </div>
+                        </div>
             </div>
         </div>
     </div>

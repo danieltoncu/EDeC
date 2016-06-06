@@ -36,8 +36,8 @@ public class LikeDislikeController {
 
             new ErrorHandler(e);
         }
-        /*if(product!=null)
-            return "redirect:/products/"+product.replaceAll(" ","%20");*/
+        if(product!=null)
+            return "redirect:/products/"+product.replaceAll(" ","%20");
         return "redirect:/myaccount";
     }
 
@@ -53,8 +53,8 @@ public class LikeDislikeController {
 
             new ErrorHandler(e);
         }
-        /*if(product!=null)
-            return "redirect:/products/"+product.replaceAll(" ","%20");*/
+        if(product!=null)
+            return "redirect:/products/"+product.replaceAll(" ","%20");
         return "redirect:/myaccount";
     }
 

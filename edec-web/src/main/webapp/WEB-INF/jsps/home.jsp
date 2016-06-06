@@ -172,7 +172,7 @@
 
                             <div class="single-product">
                                 <div class="product-f-image">
-                                    <img src="${latestProduct.pictureURL}" alt="">
+                                    <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="${latestProduct.pictureURL}" alt="">
                                     <div class="product-hover">
                                         <a href="<c:url value="${productURL}"/>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
@@ -200,14 +200,14 @@
                 <div class="brand-wrapper">
                     <h2 class="section-title">Brands</h2>
                     <div class="brand-list">
-                        <img src="<c:url value="/resources/img/services_logo__1.jpg" />" alt="">
-                        <img src="<c:url value="/resources/img/services_logo__2.jpg" />" alt="">
-                        <img src="<c:url value="/resources/img/services_logo__3.jpg" />" alt="">
-                        <img src="<c:url value="/resources/img/services_logo__4.jpg" />" alt="">
-                        <img src="<c:url value="/resources/img/services_logo__1.jpg" />" alt="">
-                        <img src="<c:url value="/resources/img/services_logo__2.jpg" />" alt="">
-                        <img src="<c:url value="/resources/img/services_logo__3.jpg" />" alt="">
-                        <img src="<c:url value="/resources/img/services_logo__4.jpg" />" alt="">
+                        <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="<c:url value="/resources/img/services_logo__1.jpg" />" alt="">
+                        <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="<c:url value="/resources/img/services_logo__2.jpg" />" alt="">
+                        <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="<c:url value="/resources/img/services_logo__3.jpg" />" alt="">
+                        <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="<c:url value="/resources/img/services_logo__4.jpg" />" alt="">
+                        <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="<c:url value="/resources/img/services_logo__1.jpg" />" alt="">
+                        <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="<c:url value="/resources/img/services_logo__2.jpg" />" alt="">
+                        <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="<c:url value="/resources/img/services_logo__3.jpg" />" alt="">
+                        <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="<c:url value="/resources/img/services_logo__4.jpg" />" alt="">
                     </div>
                 </div>
             </div>
@@ -228,7 +228,7 @@
                         <c:set var="productURL" value="${fn:replace(url,' ','%20')}"/>
 
                         <div class="single-wid-product">
-                            <a href="<c:url value="${productURL}"/>"><img src="${topHealthProduct.pictureURL}" alt="" class="product-thumb"></a>
+                            <a href="<c:url value="${productURL}"/>"><img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="${topHealthProduct.pictureURL}" alt="" class="product-thumb"></a>
                             <h2><a href="<c:url value="${productURL}"/>">${topHealthProduct.name}</a></h2>
                             <div class="product-wid-rating">
                                 <p><b>H:${topHealthProduct.healthScore}</b></p>
@@ -248,7 +248,7 @@
 
                     <c:forEach items="${topSocietyProducts}" var="topSocietyProduct" varStatus="i">
                         <div class="single-wid-product">
-                            <a href="<c:url value="/products/${topSocietyProduct.name}"/>"><img src="${topSocietyProduct.pictureURL}" alt="" class="product-thumb"></a>
+                            <a href="<c:url value="/products/${topSocietyProduct.name}"/>"><img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="${topSocietyProduct.pictureURL}" alt="" class="product-thumb"></a>
                             <h2><a href="<c:url value="/products/${topSocietyProduct.name}"/>">${topSocietyProduct.name}</a></h2>
                             <div class="product-wid-rating">
                                 <p><b>S:${topSocietyProduct.societyScore}</b></p>
@@ -267,7 +267,7 @@
                         <c:set var="productURL" value="${fn:replace(url,' ','%20')}"/>
 
                         <div class="single-wid-product">
-                            <a href="<c:url value="${productURL}"/>"><img src="${topEnvironmentProduct.pictureURL}" alt="" class="product-thumb"></a>
+                            <a href="<c:url value="${productURL}"/>"><img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="${topEnvironmentProduct.pictureURL}" alt="" class="product-thumb"></a>
                             <h2><a href="<c:url value="${productURL}"/>">${topEnvironmentProduct.name}</a></h2>
                             <div class="product-wid-rating">
                                 <p><b>E:${topEnvironmentProduct.environmentScore}</b></p>

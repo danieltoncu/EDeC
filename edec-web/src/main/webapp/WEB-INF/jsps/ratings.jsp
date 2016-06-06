@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,18 +43,8 @@
     </div> <!-- End site branding area -->
 
     <%@ include file="menu.jsp" %>
-    
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>"Aici sa avem un citat sau ceva in genul asta"</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <%@ include file="citat.jsp" %>
     
     
     <div class="single-product-area">
@@ -63,49 +54,18 @@
                 <div class="col-md-3">
                     
                      <div class="single-sidebar">
-                        <h2 class="sidebar-title">Products</h2>
-                        <div class="thubmnail-recent">
-                            <img src="img/druide.jpe" class="recent-thumb" alt="">
-                            <h2><a href="">Druide Refreshing Shower Gel</a></h2>
-                             <div class="product-wid-rating">
-								<p><b>8.9</b></p>
-							 </div>                            
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/justin.jpg" class="recent-thumb" alt="">
-                            <h2><a href="">Justin's Dark Chocolate Peanut</a></h2>
-							<div class="product-wid-rating">
-								<p><b>8.9</b></p>
-							 </div>
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/ology.jpe" class="recent-thumb" alt="">
-                            <h2><a href="">Ology Eliminator Spray </a></h2> 
-                             <div class="product-wid-rating">
-								<p><b>10</b></p>
-							 </div>							
-                        </div>
-						<div class="thubmnail-recent">
-                            <img src="img/iaurt.jpe" class="recent-thumb" alt="">
-                            <h2><a href="">Stonyfield Yogurt</a></h2>
-							<div class="product-wid-rating">
-								<p><b>8.9</b></p>
-							 </div>
-                        </div>
-						<div class="thubmnail-recent">
-                            <img src="img/pateto.jpe" class="recent-thumb" alt="">
-                            <h2><a href="">Old El Paso Chopped Green Chiles</a></h2>
-							<div class="product-wid-rating">
-								<p><b>7.9</b></p>
-							 </div>
-                        </div>
-						<div class="thubmnail-recent">
-                            <img src="img/muir.jpe" class="recent-thumb" alt="">
-                            <h2><a href="">Muir Glen Diced Tomatoes</a></h2> 
-							<div class="product-wid-rating">
-								<p><b>8.9</b></p>
-							 </div>
-                        </div>
+                        <h2 class="sidebar-title">Latest Products</h2>
+                         <c:forEach items="${latestProducts}" var="latestProduct" varStatus="i">
+                             <c:set var="url" value="/products/${latestProduct.name}"/>
+                             <c:set var="productURL" value="${fn:replace(url,' ','%20')}"/>
+                             <div class="thubmnail-recent">
+                                 <img STYLE="max-width:100%; max-height:100%;object-fit:contain;" src="${latestProduct.pictureURL}" class="recent-thumb" alt="">
+                                 <h2><a href="<c:url value="${productURL}"/>">${latestProduct.name}</a></h2>
+                                 <div class="product-wid-rating">
+                                     <p><b>${latestProduct.overallScore}</b></p>
+                                 </div>
+                             </div>
+                         </c:forEach>
                     </div>
                 </div>
 				    <div class="col-sm-9">
