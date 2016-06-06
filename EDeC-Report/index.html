@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta name="viewport" content="width=device-width">
+
+		<title>EDeC :: Raport Tehnic</title>
+
+		<link rel="stylesheet" href="./css/scholarly.css">
+		<link rel="stylesheet" href="./css/prism-coy.css">
+		<script src="./js/prism.js" defer=""></script>
+
+	</head>
+
+	<body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
+
+		<header>
+			<p class="title">EDeC</p>
+			<p class="subtitle">Ethical Decisions for Consumers</p>
+		</header>
+
+		<article id="what" typeof="schema:ScholarlyArticle" resource="#">
+			<h1>Ethical Decisions for Consumers</h1>
+			<section>
+				<ol>
+					<li property="schema:author" typeof="sa:ContributorRole">
+						<a property="schema:author" href="https://www.facebook.com/daniel.toncu" typeof="schema:Person">
+							<span property="schema:givenName">Daniel</span>
+							<span property="schema:familyName">Țoncu</span>
+						</a>
+					</li>
+					<li property="schema:contributor" typeof="sa:ContributorRole">
+						<a property="schema:contributor" href="https://www.facebook.com/OlteanuAndrei1995" typeof="schema:Person">
+							<span property="schema:givenName">Andrei</span>
+							<span property="schema:familyName">Olteanu</span>
+						</a>
+					</li>
+					<li property="schema:contributor" typeof="sa:ContributorRole">
+						<a property="schema:contributor" href="https://www.facebook.com/mario.pirau" typeof="schema:Person">
+							<span property="schema:givenName">Mario</span>
+							<span property="schema:familyName">Pîrău</span>
+						</a>
+					</li>
+					<li property="schema:contributor" typeof="sa:ContributorRole">
+						<a property="schema:contributor" href="https://www.facebook.com/barat.andra" typeof="schema:Person">
+							<span property="schema:givenName">Andra</span>
+							<span property="schema:familyName">Barat</span>
+						</a>
+					</li>
+				</ol>
+			</section>
+
+			<section>
+				<h3>Cuprins:</h3>
+				<ol>
+					<li><a href="#descriere">Descriere</a></li>
+					<li><a href="#tehnologii">Tehnologii Folosite</a></li>
+					<li><a href="#bazadate">Structura Bazei de Date</a></li>
+					<li><a href="#site">Structura Site-ului</a></li>
+					<li><a href="#etape">Etapele Dezvoltării Proiectului</a></li>
+					<li><a href="#bibliografie">Bibliografie</a></li>
+				</ol>
+			</section>
+		
+			<section typeof="sa:Abstract">
+				<a name="descriere"></a>
+				<h3>Descriere</h3>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Acest proiect îşi propune dezvoltarea unui site, ce oferă asistență consumatorilor privind deciziile de achiziție a unor bunuri/servicii într-un mod etic. Acestora li se vor pune la dispoziție numeroase liste cu produse din diferite categorii cum ar fi: îmbrăcăminte, mâncare, electronice etc. Aplicația va oferi, de asemenea, statistici privind cele mai dezirabile/indezirabile resurse, utilizatorii cu cele mai multe/puține restricții, persoanele având preferințe similare.</p>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Site-ul, în prim plan, va oferi posibilitatea de autentificare iar în cazul în care utilizatorul nu are un cont creat, i se va oferi posibilitatea de a-și crea unul - pentru aceasta, va trebui să completeze câteva câmpuri obligatorii.</p>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Fiecare client va avea la dispoziție mecanisme de căutare/filtrare/prezentare multicriterială, care îi va ajuta să selecteze doar anumite categorii dorite de produse. Un exemplu de căutare ar putea fi: produsele cele mai prefrate de clienti din categoria electrocasnice.</p>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Multe dintre informațiile acestea vor putea fi importate/exportate pe baza unor resurse disponibile în formatele CSV și XML, însă, numai utilizatorilor autentificați (administratorilor), deoarece această funcționalitate implică modificarea bazei de date.</p>
+			</section>
+			
+			<section typeof="sa:Results">
+				<a name="tehnologii"></a>
+				<h3>Tehnologii Folosite</h3>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Pentru acest proiect, se vor folosi numeroase tehnologii care își vor găsi utilitatea pentru scopurile propuse:</p>
+
+				<ul>
+					<li><b>HTML/CSS:</b> pentru a crea structura de bază a site-ului nostru și pentru a o personaliza stilistic conform cerințelor
+					de pe piață;</li>
+					<li><b>Bootstrap Framework:</b> realizarea aplicației în maniera responsive;</li>
+					<li><b>Java Spring Framework:</b> tehnologie utilizată pe partea de Controller (din MVC); realizează legătura dintre front end (View) și baza de date (Model) dar și logica aplicației;</li>
+					<li><b>Oracle Database (PL/SQL):</b> tehnologie utilizată pe partea de Model (din MVC); o parte din logica aplicației - cea legată de manipularea datelor, pentru performanță sporită, este realizată chiar pe serverul bazei de date în Limbajul PL/SQL;</li>
+				</ul>
+			</section>
+
+			<section typeof="sa:Results">
+				<a name="bazadate"></a>
+				<h3>Structura Bazei de Date</h3>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Baza de Date este responsabilă în stocarea tuturor produselor/serviciilor cu datelor aferente lor - Brand, Ingrediente, a utilizatorilor înregistrați precum și a datelor aferente lor - Like-uri, Dislike-uri pentru Ingrediente.</p>
+
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/database-schema-1.png" alt="Database Schema" width="40%"></p></center>
+				</figure>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Fiecare Produs din tabela <code>PRODUCTS</code> are un set de caracteristici specifice, un Brand - stocat în tabela <code>BRANDS</code>, dar și un set de Ingrediente (din care este constituit) - stocate în tabela <code>CHARACTERISTICS</code>.</p>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Fiecare Utilizator din tabela <code>USERS</code> este caracterizat de <code>EMAIL</code>, <code>PASSWORD</code> și <code>USERNAME</code>. De asemenea, fiecare Utilizator are propria listă de preferințe referitoare la Ingrediente - tabelele: <code>SER_LIKES</code> și <code>SER_DISLIKES</code>. Like-uri și Dislike-uri - aceasta este modalitatea pe care o pune Utilizatorului pentru a-și specifica preferințele. Aplicație va sugera, ulterior, Produse Utilizatorului în concordanță cu Like-urile/Dislike-urile setate pentru anumite Ingrediente astfel încât Utilizatorul va primi sugestii de Produse ce conțin cât mai multe Ingrediente din lista sa de Like-Ingrediente și cât mai puține Ingrediente din lista sa de Dislike-Ingrediente.</p>
+			</section>
+
+			<section typeof="sa:Results">
+				<a name="site"></a>
+				<h3>Structura Site-ului</h3>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Căutând simplitatea, ne vom strădui sa creăm 6 pagini care să ne satisfacă nevoile, plus două pagini fără de care o aplicație web este incompletă - Pagina Principală (index) și Pagina Despre (about).</p>
+
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/index-1.png" alt="Pagina Principală 1" width="40%"></p></center>
+				</figure>
+
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/index-2.png" alt="Pagina Principală 2" width="40%"></p></center>
+				</figure>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>Pagina Principală</code> este prima impresie pe care o oferă aplicația unui utilizator ce o accesează, probabil, întâmplător. Design-ul ei trebuie să fie corespunzător.</p>
+
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/login.png" alt="Pagina de Autentificare/Înregistrare" width="40%"></p></center>
+				</figure>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>Pagina de Autentificare/Înregistrare</code> este pagina unde un Utilizator se poate autentifica sau, dacă nu are un cont, se poate înregistra, pentru a merge la pasul următor.</p>
+
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/my-account-3.png" alt="Pagina Contul Meu 1" width="40%"></p></center>
+				</figure>
+
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/my-account-2.png" alt="Pagina Contul Meu 2" width="40%"></p></center>
+				</figure>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>Pagina „Contul Meu”</code>. Aici, odată autentificat, Utilizatorul, poate configura lista sa de Ingrediente Preferate și cea de Ingrediente Nepreferate. Pentru aceasta, tot ce trebuie să facă este să scrie numele Ingredientului ce intenționează să-l adauge unei liste în Bara de Căutare și să specifice lista unde să fie adăugat acest Ingredient.</p>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Tot aici Utilizatorul poate vedea <b>Utilizatori cu Preferințe Similare</b>.</p>
+
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/statistics-1.png" alt="Pagina Statistici 1" width="40%"></p></center>
+				</figure>
+
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/statistics-2.png" alt="Pagina Statistici 2" width="40%"></p></center>
+				</figure>
+				
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>Pagina Statistici</code> este pagina unde pot fi găsite diverse statistici puse la dispoziția utilizatorului de către aplicație - <b>Top 10 Cele Mai Dezirabile/Indezirabile Ingrediente</b>, <b>Utilizatori Cu Cele Mai Multe/Puține Restricții</b>.</p>
+				
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/single-product-2.png" alt="Pagina Produs" width="40%"></p></center>
+				</figure>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>Pagina Produs</code> este pagina dedicată unui Produs ales de către Utilizator, unde pot fi găsite toate detaliile despre el. Pe partea stângă pot fi găsite informații despre Producător dar și un Preț de referință al Produsului. Pe partea dreaptă se găsește Denumirea Produsului, Detalii aferente și Lista Ingredientelor din care se conțin în Produs. Utilizatorul, poate adăuga un Ingredient uneia din listele sale de preferințe chiar de aici. Mai jos se găsește o listă cu Produse recomandate de aplicație, conform preferințelor Utilizatorului.</p>
+
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/category.png" alt="Pagina Categorii" width="40%"></p></center>
+				</figure>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>Pagina Produse</code>. Aceasta este pagina unde este afișat rezultatul căutării din Bara de Căutare.</p>
+
+				<figure typeof="sa:Image">
+				<center><p><img src="./img/about.png" alt="Pagina Despre" width="40%"></p></center>
+				</figure>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>Pagina Despre</code> este pagina dedicată descrierii aplicației.</p>
+
+			</section>
+
+			<section typeof="sa:Results">
+				<a name="etape"></a>
+				<h3>Etapele Dezvoltării Proiectului</h3>
+
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Pentru acest proiect, am parcurs următoarele etape în dezvoltarea aplicației:</p>
+
+				<ul>
+					<li>Schițe. Design. Arhitectura Aplicației.</li>
+					<li>Modelarea Bazei de Date.</li>
+					<li>Crearea Paginilor (Front-End).</li>
+					<li>Design Back-End.</li>
+					<li>Design și Implementare a Procedurilor PL/SQL.</li>
+					<li>Design & Implementare a Arhitecturii MVC.</li>
+					<li>Implementare Back-End.</li>
+					<li>Adăugare funcționalități AJAX.</li>
+					<li>Testare și Corectare de Bug-uri.</li>
+				</ul>
+			</section>
+
+			<section typeof="sa:ReferenceList">
+				<a name="bibliografie"></a>
+				<h3>Bibliografie</h3>
+
+				<ul>
+					<li>Link: <a href="http://www.phpclasses.org/">http://getbootstrap.com/</a></li>
+					<li>Link: <a href="https://www.khanacademy.org/">https://www.khanacademy.org/</a></li>
+					<li>Link: <a href="https://www.codecademy.com/">https://www.codecademy.com/</a></li>
+					<li>Link: <a href="http://www.w3schools.com/">http://www.w3schools.com/</a></li>
+					<li>Link: <a href="http://forum.codecall.net/">http://forum.codecall.net/</a></li>
+					<li>Link: <a href="http://www.phpclasses.org/">http://www.phpclasses.org/</a></li>
+				</ul>
+			</section>
+		</article>
+
+	    <footer>
+	      <p>
+	        <a href="http://www.info.uaic.ro/bin/Main/">FII</a>
+			•
+	        <a href="http://profs.info.uaic.ro/~busaco/teach/courses/web/">Tehnologii Web</a>
+	        •
+			 <a href="http://profs.info.uaic.ro/~busaco/teach/courses/web/projects/xml-transform.php?pag=projects">Proiecte</a>
+	      </p>
+	    </footer>
+	</body>
+
+</html>
