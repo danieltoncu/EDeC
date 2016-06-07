@@ -25,7 +25,7 @@
                                         <li class="dropdown-header">Personal care</li>
                                         <li><a href="<c:url value="/search?pag=1&category=ConditionerAndShampoo"/>">Conditioner and Shampoo</a></li>
                                         <li><a href="<c:url value="/search?pag=1&category=SkinCare"/>">Skin care</a></li>
-                                        <li><a href="<c:url value="/search?pag=1&category=BodyWashAndCleaner"/>">Body Wash and Cleaner</a></li>
+                                        <%--<li><a href="<c:url value="/search?pag=1&category=BodyWashAndCleaner"/>">Body Wash and Cleaner</a></li>--%>
                                         <li><a href="<c:url value="/search?pag=1&category=Makeup"/>">Makeup</a></li>
                                     </ul>
                                 </li>
@@ -34,14 +34,14 @@
                                         <li class="dropdown-header">Food</li>
                                         <li><a href="<c:url value="/search?pag=1&category=BreaksAndBakesGoods"/>">Breads and Baked Goods</a></li>
                                         <li><a href="<c:url value="/search?pag=1&category=Candy"/>">Candy</a></li>
-                                        <li><a href="<c:url value="/search?pag=1&category=Snacks"/>">Snacks</a></li>
+                                        <%--<li><a href="<c:url value="/search?pag=1&category=Snacks"/>">Snacks</a></li>--%>
                                         <li><a href="<c:url value="/search?pag=1&category=Drinks"/>">Drinks</a></li>
                                     </ul>
                                 </li>
                                 <li class="col-sm-3">
                                     <ul>
                                         <li class="dropdown-header">House hold</li>
-                                        <li><a href="<c:url value="/search?pag=1&category=Laundry"/>">Laundry</a></li>
+                                        <%--<li><a href="<c:url value="/search?pag=1&category=Laundry"/>">Laundry</a></li>--%>
                                         <li><a href="<c:url value="/search?pag=1&category=PetFood"/>">Pet Food</a></li>
                                         <li><a href="<c:url value="/search?pag=1&category=Dishwashing"/>">Dishwashing</a></li>
                                         <li><a href="<c:url value="/search?pag=1&category=HouseholdCleaners"/>">Household Cleaners</a></li>
@@ -53,7 +53,7 @@
                                         <li><a href="<c:url value="/search?pag=1&category=BabyFood"/>">Baby Food</a></li>
                                         <li><a href="<c:url value="/search?pag=1&category=BabyLotion"/>">Baby Lotion</a></li>
                                         <li><a href="<c:url value="/search?pag=1&category=BabyShampooAndSoap"/>">Baby Shampoo and Soap</a></li>
-                                        <li><a href="<c:url value="/search?pag=1&category=BabyWipes"/>">Baby Wipes</a></li>
+                                        <%--<li><a href="<c:url value="/search?pag=1&category=BabyWipes"/>">Baby Wipes</a></li>--%>
                                     </ul>
                                 </li>
                             </ul>

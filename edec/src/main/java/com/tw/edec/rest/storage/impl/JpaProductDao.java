@@ -165,6 +165,7 @@ public class JpaProductDao implements ProductDao {
                 "  join user_dislikes ud on ud.user_id=ul.user_id and ud.characteristic_id<>ul.characteristic_id\n" +
                 "where ul.user_id=:userId";*/
 
+        //Try3
         /*String query="select  distinct p.* from products p\n" +
                 "  join product_characteristic pc on pc.product_id=p.id\n" +
                 "  join characteristics c on c.id=pc.characteristic_id\n" +
@@ -186,12 +187,14 @@ public class JpaProductDao implements ProductDao {
 
     @Override
     public List<Product> getProductsToAvoid(Long userId) {
+        //Try1
         /*String query="select  distinct p.* from products p\n" +
                 "join product_characteristic pc on pc.product_id=p.id\n" +
                 "join characteristics c on c.id=pc.characteristic_id\n" +
                 "join user_dislikes ul on ul.characteristic_id=pc.characteristic_id\n" +
                 "where ul.user_id=:userId";*/
 
+        //Try2
         /*String query="select  distinct p.* from products p\n" +
                 "  join product_characteristic pc on pc.product_id=p.id\n" +
                 "  join characteristics c on c.id=pc.characteristic_id\n" +
@@ -204,7 +207,7 @@ public class JpaProductDao implements ProductDao {
                 "  join characteristics c on c.id=pc.characteristic_id\n" +
                 "  join user_dislikes ul on ul.characteristic_id=pc.characteristic_id\n" +
                 "  join user_likes ud on ud.user_id=ul.user_id\n" +
-                "where ul.user_id=:userId and ud.CHARACTERISTIC_ID<>ul.CHARACTERISTIC_ID AND EXISTS()";
+                "where ul.user_id=:userId and ud.CHARACTERISTIC_ID<>ul.CHARACTERISTIC_ID";
 
         Query q=entityManager.createNativeQuery(query,Product.class).setParameter("userId",userId);
 

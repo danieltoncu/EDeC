@@ -52,6 +52,7 @@ public class ProductsController {
         return productService.getRelatedProducts(productName);
     }
 
+    @CrossOrigin(origins = "http://localhost:8282")
     @RequestMapping(value = "/top5overall", method = RequestMethod.GET)
     public List<Product> topFiveByOverall(){
         return productDao.getTop5Overall();

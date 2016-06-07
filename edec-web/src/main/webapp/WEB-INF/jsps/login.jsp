@@ -103,26 +103,31 @@
 										</div>
 									</div>
 								</form>
-								<form:form id="register-form" action="sign" method="post" commandName="userForm" role="form" style="display: none;">
-
+								<form:form id="register-form" action="sign" method="post" commandName="userForm" role="form" style="display: none;" onsubmit="return passwordCheck()">
+									<div class="alert alert-danger" style="display: none;">
+										Incorrect Password!
+									</div>
+									<div class="alert alert-danger" id="confirm-password-alert" style="display: none;">
+										Password and Confirm Password do not match!
+									</div>
                                     <c:if test="${not empty errorRegister}">
                                         <div class="alert alert-danger">
-                                            Your login was unsuccessful.<br/>
+                                            Your registration was unsuccessful.<br/>
                                             Caused: ${errorMessage}
                                         </div>
                                     </c:if>
 
 									<div class="form-group">
-										<form:input path="username" type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username"/>
+										<form:input path="username" type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="true"/>
 									</div>
 									<div class="form-group">
-										<form:input path="email" type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" />
+										<form:input path="email" type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" required="true"/>
 									</div>
 									<div class="form-group">
-										<form:input path="password" type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" />
+										<form:input path="password" type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" value="" required="true"/>
 									</div>
 									<div class="form-group">
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" value="" required="true">
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -161,6 +166,8 @@
     <!-- Main Script -->
     <script src="<c:url value="/resources/js/main.js" />"></script>
     <script src="<c:url value="/resources/js/menu.js" />"></script>
+	<script src="<c:url value="/resources/js/empty-check.js" />"></script>
+	<script src="<c:url value="/resources/js/password-check.js" />"></script>
 	
 	<!--Login-->
 	<script>
